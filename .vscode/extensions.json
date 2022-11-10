@@ -1,0 +1,13 @@
+{
+  // このワークスペースのユーザーに推奨される拡張機能のリストです。
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "vue.volar",
+  ],
+  // このワークスペースのユーザーに推奨していない拡張機能のリストです。
+  "unwantedRecommendations": [
+    "esbenp.prettier-vscode"
+  ]
+}

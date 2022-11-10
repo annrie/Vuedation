@@ -1,0 +1,34 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+generated:production
+
+# Yarn2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state*.yml
+.yarnrc.yml
+.pnp.*
+
+# Service worker
+# sw.*
+
+# vscode
+.history
+=*
+
+# images
+*.afdesign
+*.afphoto
+
+tmp
+
+.env

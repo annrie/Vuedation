@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja"
+  class="scroll-smooth">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"
+      content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable"
+      content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style"
+      content="black">
+    <meta name="theme-color"
+      content="#ffffff">
+    <link rel="apple-touch-icon"
+      href="/favicon/apple-touch-icon-180x180.png">
+    <link rel="mask-icon"
+      href="/safari-pinned-tab.svg"
+      color="#00aba9">
+    <!-- ホームに追加したときの名前 -->
+    <link rel="icon"
+      href="/favicon.ico">
+    <title>Vudation with vite</title>
+    <meta name="description"
+      content="Vue sample application with Vite">
+    <link rel="dns-prefetch"
+      href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch"
+      href="https://fonts.gstatic.com">
+    <link rel="preconnect"
+      crossorigin="anonymous"
+      href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+      crossorigin="anonymous"
+      href="https://fonts.gstatic.com">
+    <link rel="stylesheet"
+      crossorigin="anonymous"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" />
+    <link rel="canonical"
+      href="https://vuedation.phantomoon.com/">
+    <link rel="start"
+      href="https://vuedation.phantomoon.com"
+      title="Home">
+    <link rel="shortcut icon"
+      type="image/vnd.microsoft.icon"
+      href="/favicon.ico">
+    <meta name="msapplication-square70x70logo"
+      content="/favicon/site-tile-70x70.png">
+    <meta name="msapplication-square150x150logo"
+      content="/favicon/site-tile-150x150.png">
+    <meta name="msapplication-wide310x150logo"
+      content="/favicon/site-tile-310x150.png">
+    <meta name="msapplication-square310x310logo"
+      content="/favicon/site-tile-310x310.png">
+    <meta name="msapplication-TileColor"
+      content="#0078d7">
+    <link rel="apple-touch-icon"
+      sizes="57x57"
+      href="/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon"
+      sizes="60x60"
+      href="/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon"
+      sizes="72x72"
+      href="/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon"
+      sizes="76x76"
+      href="/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon"
+      sizes="114x114"
+      href="/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon"
+      sizes="120x120"
+      href="/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon"
+      sizes="144x144"
+      href="/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon"
+      sizes="152x152"
+      href="/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon-180x180.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name"
+      content="Vuedation(Vue3 + Vite)">
+    <meta property="og:title"
+      content="Vuedation(Vue3 + Vite) Vue.js 3でWeb開発">
+    <meta property="og:url"
+      content="https://phantomoon.com/">
+    <meta property="og:description"
+      content="Vue3を使いこなし最新バージョンの関連ライブラリやハイレベルフレームワークと統合し、プロジェクト全体を構築できるようにする方法について学んでいきます。">
+    <meta property="og:image"
+      content="https://vuedation.phantomoon.com/img/og_image.png">
+    <!-- <link rel="stylesheet" href="src/assets/scss/app.scss">
+    <link rel="stylesheet" href="src/assets/less/main.less"> -->
+  <script>
+      if ( 'serviceWorker' in navigator )
+      {
+      window.addEventListener( 'load', () =>
+      {
+        navigator.serviceWorker.register( '/sw.js' ).then( function ( registration )
+        {
+          // 登録成功
+          console.log( 'ServiceWorker の登録に成功しました。スコープ: ', registration.scope )
+        } ).catch( function ( err )
+        {
+          // 登録失敗
+          console.log( 'ServiceWorker の登録に失敗しました。', err )
+        } )
+    } )
+    }
+
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.theme === 'dark' ||
+      ( !( 'theme' in localStorage ) && window.matchMedia( '(prefers-color-scheme: dark)' ).matches )
+    )
+    {
+      document.documentElement.classList.add( 'dark' )
+    } else
+    {
+      document.documentElement.classList.remove( 'dark' )
+    }
+
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = 'light'
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = 'dark'
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem( 'theme' )
+  </script>
+
+  </head>
+
+  <body>
+    <noscript>
+      <strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <div id="modal"></div>
+    <script type="module"
+      src="/src/main.ts"></script>
+    <!-- built files will be auto injected -->
+  </body>
+
+</html>

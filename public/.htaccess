@@ -1,0 +1,20 @@
+# BEGIN Force SSL for SAKURA
+# RewriteしてもHTTPS環境変数を有効にする
+SetEnvIf REDIRECT_HTTPS (.*) HTTPS=$1
+
+# 常時HTTPS化(HTTPSが無効な場合リダイレクト)
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{ENV:HTTPS} !on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>
+<IfDefine SSL>
+Listen 80
+Listen 443
+</IfDefine>
+# END Force SSL for SAKURA
