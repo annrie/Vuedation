@@ -83,6 +83,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/multi-word-component-names': 'off',
+    'vue/comment-directive': 'off',
     // 'vue/multi-word-component-names': [1, {
     //   'ignores': []
     // }],
