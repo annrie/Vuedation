@@ -58,6 +58,14 @@ module.exports = {
     'import/extensions': ['.js', '.jsx'],
     'import/ignore': ['.(scss | less | css)$'],
   },
+  overrides: [
+    {
+      files: ['*.html'],
+      rules: {
+        'vue/comment-directive': 'off'
+      }
+    }
+  ],
   // add your custom rules here
   rules: {
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
@@ -83,7 +91,6 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/comment-directive': 'off',
     // 'vue/multi-word-component-names': [1, {
     //   'ignores': []
     // }],
