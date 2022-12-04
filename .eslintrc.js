@@ -42,7 +42,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-essential',
-    '@vue/eslint-config-typescript'
+    '@vue/eslint-config-standard-with-typescript',
+    '@vue/eslint-config-standard-with-typescript/allow-js-in-vue'
     // '@vue/typescript/recommended',
     // '@vue/prettier',
     // 'prettier',
