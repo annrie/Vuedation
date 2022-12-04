@@ -31,14 +31,14 @@ export default defineConfig({
     ],
   ],
   presets: [
-    presetUno(),
-    presetAttributify(),
-    presetIcons({
-      scale: 1.2,
-      warn: true,
-      display: 'inline-block',
-      'vertical-align': 'middle',
-    }),
+    // presetUno(),
+    // presetAttributify(),
+    // presetIcons({
+    //   scale: 1.2,
+    //   warn: true,
+    //   display: 'inline-block',
+    //   'vertical-align': 'middle',
+    // }),
     presetTypography(),
     presetWebFonts({
       fonts: {

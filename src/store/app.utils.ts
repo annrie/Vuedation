@@ -1,6 +1,6 @@
 import {NewsData, NewsCategory} from '@/store/app.config'
 import * as THREE from 'three'
-import SimplexNoise from 'simplex-noise'
+import {createNoise2D} from 'simplex-noise'
 // News
 /**
  * セットされたカテゴリーでフィルタリングして返す
@@ -26,7 +26,7 @@ export const getDataDateTime = (dateStr: string): string => {
   const dd = ('0' + date.getDate()).slice(-2)
   return `${date.getFullYear()}-${mm}-${dd}`
 }
-const simplex = new SimplexNoise(Math.random)
+const noise2D = createNoise2D(Math.random)
 
 function clamp(a: number) {
   return Math.max(0, Math.min(1, a))
@@ -102,7 +102,7 @@ export const getGeometry = (detail: number, offsettop: number): THREE.BufferGeom
       )
       uvs.push((i * gran - gran / 2 + currentShift) / width, (granH + currentheight) / height)
 
-      let simp = simplex.noise2D(i / rows, j / rows) + Math.random()
+      let simp = noise2D(i / rows, j / rows) + Math.random()
       const o = clamp(currentheight / height + (2 * simp) / detail)
       let r = Math.random()
       offsets.push(o, clamp(o + 0.1 * offsettop), clamp(o + 0.1 * offsettop))
@@ -136,7 +136,7 @@ export const getGeometry = (detail: number, offsettop: number): THREE.BufferGeom
       )
       uvs.push((i * gran + gran / 2 + currentShift) / width, (granH + currentheight) / height)
 
-      simp = simplex.noise2D((i + 1) / rows, j / rows) + Math.random()
+      simp = noise2D((i + 1) / rows, j / rows) + Math.random()
       const o1 = clamp(currentheight / height + (2 * simp) / detail)
       r = Math.random()
       offsets.push(o1, o1, clamp(o1 + 0.1 * offsettop))
