@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/annrie/Vuedation/compare/v1.5.3...v1.5.4) (2023-02-24)
+
+
+### ビルドプロセスまたは補助ツールの変更
+
+* 🤖 update Vite v.3 to v.4 ([11fa761](https://github.com/annrie/Vuedation/commit/11fa7615aa43e525c325077f36133ec56838973e))
+
 ### 1.5.3 (2023-02-23)
 
 
