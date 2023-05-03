@@ -448,7 +448,7 @@ export default defineComponent({
 
 <template>
   <div class="PageHero">
-    <transition name="slide-up">
+    <transition name="slide-fade">
       <PageHeroInner :hero-data="heroDataList[currentPageIndex]">
         <template #heading>
           <span v-html="heroDataList[currentPageIndex].headingHtml"></span>
@@ -458,20 +458,23 @@ export default defineComponent({
         </template>
       </PageHeroInner>
     </transition>
-    <button class="PageHero__control -prev" @click="onClickPagePrev">
+    <button class="PageHero__control -prev"
+      @click="onClickPagePrev">
       <svg role="img">
         <use xlink:href="#svg-prev" />
       </svg>
       <span>{{ prevPage }}</span>
     </button>
-    <button class="PageHero__control -next" @click="onClickPageNext">
+    <button class="PageHero__control -next"
+      @click="onClickPageNext">
       <svg role="img">
         <use xlink:href="#svg-next" />
       </svg>
       <span>{{ nextPage }}</span>
     </button>
     <div class="PageHero__bg">
-      <div ref="container" class="PageHero__canvas"></div>
+      <div ref="container"
+        class="PageHero__canvas"></div>
     </div>
   </div>
 </template>
@@ -484,14 +487,14 @@ export default defineComponent({
   height: calc(100vh - 80px);
   // overflow: hidden;
 
-  @include md(max) {
+  @screen lt-md {
     height: calc(100vh - 70px);
 
     @supports (-webkit-touch-callout: none) {
-      height: -webkit-fill-available;
-    }
+        height: -webkit-fill-available;
+        }
   }
-}
+ }
 
 .PageHero__control {
   @apply border-none cursor-pointer font-semibold p-0 bottom-30px text-hex-42b883 z-2 absolute;
@@ -503,14 +506,15 @@ export default defineComponent({
   font-size: em(28, 16);
   // font-weight: 600;
   line-height: 1.6;
-  // color: $COLOR_MAIN;
+  color: $COLOR_MAIN;
   background-color: rgba(#fff, 0.9);
   // border: 0 none;
   box-shadow: $SHADOW_BASE;
+  // transition: box-shadow 0.3s ease;
   transition: box-shadow $SEC ease;
 
   // cursor: pointer;
-  @include md(max) {
+  @screen lt-md {
     font-size: em(18, 16);
   }
 
@@ -522,9 +526,10 @@ export default defineComponent({
     // width: 12px;
     // height: 20px;
     fill: $COLOR_MAIN;
-    transition: transform $SEC ease;
+    transition: transform 0.3s ease;
+    // transition: transform $SEC ease;
 
-    @include md(max) {
+    @screen lt-md {
       @apply h-16px w-8px;
       // width: 8px;
       // height: 16px;
@@ -536,13 +541,13 @@ export default defineComponent({
   }
 
   &.-prev {
-    @apply rounded-t-none rounded-l-none rounded-r-10px rounded-b-10px py-10px pr-20px pl-40px left-0;
+    @apply rounded-t-none rounded-l-none rounded-r-10px rounded-b-10px py-10px pr-20px pl-40px -left-2;
 
     // left: 0;
     // padding: 10px 20px 10px 40px;
     // border-radius: 0 10px 10px 0;
-    @include md(max) {
-      @apply px-4px pr-14px pl-20px;
+    @screen lt-md {
+      @apply py-4px pr-14px pl-20px;
       // padding: 4px 14px 4px 20px;
     }
 
@@ -550,7 +555,7 @@ export default defineComponent({
       @apply left-20px;
 
       // left: 20px;
-      @include md(max) {
+      @screen lt-md {
         @apply left-6px;
         // left: 6px;
       }
@@ -558,7 +563,7 @@ export default defineComponent({
 
     &:hover {
       svg {
-        @include md(min) {
+        @screen md {
           transform: translate(-6px, -50%);
         }
       }
@@ -566,12 +571,12 @@ export default defineComponent({
   }
 
   &.-next {
-    @apply rounded-r-none rounded-t-10px rounded-l-10px py-10px pr-40px pl-20px right-0;
+    @apply rounded-r-none rounded-t-10px rounded-l-10px py-10px pr-40px pl-20px -right-2;
 
     // right: 0;
     // padding: 10px 40px 10px 20px;
     // border-radius: 10px 0 0 10px;
-    @include md(max) {
+    @screen lt-md {
       @apply py-4px pr-20px pl-14px;
       // padding: 4px 20px 4px 14px;
     }
@@ -580,7 +585,7 @@ export default defineComponent({
       @apply right-20px;
 
       // right: 20px;
-      @include md(max) {
+      @screen lt-md {
         @apply right-6px;
         // right: 6px;
       }
@@ -588,7 +593,7 @@ export default defineComponent({
 
     &:hover {
       svg {
-        @include md(min) {
+        @screen md {
           transform: translate(6px, -50%);
         }
       }
@@ -598,46 +603,34 @@ export default defineComponent({
 
 .PageHero__bg {
   @apply top-0 right-0 bottom-0 left-0 z-1 absolute;
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // z-index: 1;
-}
+ }
 
 .PageHero__canvas {
   @apply h-full w-full;
-  // width: 100%;
-  // height: 100%;
 
   canvas {
     @apply h-full bg-rose-500 w-full;
     -webkit-overflow-scrolling: touch;
-    // width: 100%;
-    // height: 100%;
-    // background-color: tomato;
   }
 }
 
-.heading-enter-active,
-.desc-enter-active {
-  @apply opacity-0;
-  // opacity: 0;
-  transition: opacity 1s ease;
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 1s;
 }
 
-.desc-enter-active {
-  @apply delay-400;
-  // transition-delay: 0.4s;
-}
+// .slide-fade-leave-active {
+//   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+// }
 
-.heading-enter-to,
-.desc-enter-to {
-  @apply opacity-100;
-  // opacity: 1;
-}
+.slide-fade-enter-from,
+.slide-fade-leave-to
 
+/* .slide-fade-leave-active below version 2.1.8 */
+  {
+  // transform: translateX(10px);
+  opacity: 0;
+}
 .bg-hero-charlie-brown {
   @apply bg-dark-50 opacity-50;
 }

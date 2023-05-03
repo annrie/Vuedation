@@ -16,15 +16,15 @@ const onClickMenuToggle = () => {
 <template>
   <button type="button" class="AppHeader__trigger" @click="onClickMenuToggle">
     <span class="_VisuallyHidden">メニューを開く</span>
-    <span class="AppHeader__triggerBar -top"></span>
+    <span class="-top AppHeader__triggerBar"></span>
     <span class="AppHeader__triggerBar -center"></span>
-    <span class="AppHeader__triggerBar -bottom"></span>
+    <span class="-bottom AppHeader__triggerBar"></span>
   </button>
 </template>
 
 <style lang="scss" scoped>
 .AppHeader__trigger {
-  @apply fixed top-0 right-28px z-10 w-94px h-78px p-0;
+  @apply h-78px p-0 top-0 right-28px w-94px z-10 fixed;
   // position: fixed;
   // top: 0;
   // right: 28px;
@@ -36,8 +36,8 @@ const onClickMenuToggle = () => {
   border: 0 none;
   cursor: pointer;
 
-  @include md(max) {
-    @apply right-0 w-72px h-60px;
+  @screen lt-md {
+    @apply h-60px right-0 w-72px;
     // right: 0;
     // width: 72px;
     // height: 60px;
@@ -50,7 +50,7 @@ const onClickMenuToggle = () => {
 }
 
 .AppHeader__triggerBar {
-  @apply absolute h-3px rounded-2px;
+  @apply rounded-2px h-3px absolute;
 
   // position: absolute;
   left: 50%;
@@ -59,7 +59,7 @@ const onClickMenuToggle = () => {
   // border-radius: 2px;
   background-color: #fff;
 
-  @include md(max) {
+  @screen lt-md {
     @apply h-2px;
     // height: 2px;
   }
@@ -71,7 +71,7 @@ const onClickMenuToggle = () => {
     transform: translateX(-50%);
 
     // width: 32px;
-    @include md(max) {
+    @screen lt-md {
       @apply top-19px w-20px;
       //   top: 19px;
       //   width: 20px;
@@ -83,7 +83,7 @@ const onClickMenuToggle = () => {
       // top: 32px;
       transform: translateX(-50%) rotate(45deg);
 
-      @include md(max) {
+      @screen lt-md {
         @apply top-27px;
         // top: 27px;
       }
@@ -97,7 +97,7 @@ const onClickMenuToggle = () => {
     transform: translateX(-50%);
 
     // width: 20px;
-    @include md(max) {
+    @screen lt-md {
       @apply top-27px w-14px;
       // top: 27px;
       // width: 14px;
@@ -116,7 +116,7 @@ const onClickMenuToggle = () => {
     transform: translateX(-50%);
 
     // width: 32px;
-    @include md(max) {
+    @screen lt-md {
       @apply top-35px w-20px;
       // top: 35px;
       // width: 20px;
@@ -128,7 +128,7 @@ const onClickMenuToggle = () => {
       // top: 32px;
       transform: translateX(-50%) rotate(-45deg);
 
-      @include md(max) {
+      @screen lt-md {
         @apply top-27px;
         // top: 27px;
       }

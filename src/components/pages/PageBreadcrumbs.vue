@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // https://technical-seo.jp/structured-data-for-breadcrumb/
 // import { defineComponent } from "vue";
-import { menuRoutes } from "@/router";
+import { breadRoutes } from "@/router";
 
 // export default defineComponent({
 // name: "PageBreadcrumbs",
@@ -19,7 +19,7 @@ const props = defineProps<Props>();
 
 // setup(props) {
 let routeData;
-for (const data of menuRoutes) {
+for (const data of breadRoutes) {
   if (data.name === props.label) routeData = data;
 }
 const paths: string[] = ["/"];
@@ -93,8 +93,8 @@ if (routeData) {
     // padding-left: 1em;
 
     &::before {
-      @apply top-0 left-0 text-hex-42b883 content-/ absolute;
-      // content: "/";
+      @apply top-0 left-0 text-hex-42b883 absolute;
+      content: '>'
       // position: absolute;
       // top: 50%;
       // left: 0;
@@ -110,7 +110,7 @@ if (routeData) {
 
     &[href] {
       &:hover {
-        @apply hover: underline ;
+        @apply hover: underline;
         //   text-decoration: underline;
       }
     }

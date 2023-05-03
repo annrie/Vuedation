@@ -21,40 +21,40 @@ export class AppData {
         '<b><span>Vuedation(Vue3 + Vite)</span></b><span class="PageHero__headingEn">Vue.js 3</span><span>でWeb開発</span>',
       descHtml:
         'これは<b>架空の書籍</b>「Vue.js 3による一歩進んだWeb開発」の<mark><em>仮想紹介サイト</em></mark>です<br />Vue3を使いこなし最新バージョンの関連ライブラリやハイレベルフレームワークと統合し、プロジェクト全体を構築できるようにする方法について学んでいきます。',
-      cls: ['-home', 'bg-hero-overlapping-circles', 'dark:bg-dark-50/50'],
+      cls: ['-home', 'bg-hero-overlapping-circles-green-400/30', 'dark:bg-dark-50/30'],
     },
     {
       page: 'About',
       headingHtml: 'About',
       descHtml: '本書の目次のご紹介<br />何を学べば良いのかを順に並べています。',
-      cls: ['-about', 'bg-hero-hideout'],
+      cls: ['-about', 'bg-hero-hideout-lime-600/80', 'dark:bg-dark-50/30']
     },
     {
       page: 'Author',
       headingHtml: 'Author',
       descHtml:
         'とにかく簡単にWebサイトを構築したい。<br />その思いだけで色々な技術を日々学んでいます。<br />そんな中で自分の知見を少しでもみなさんに共有してもらえればと思っています。',
-      cls: ['-author', 'bg-hero-anchors-away'],
+      cls: ['-author', 'bg-hero-anchors-away-emerald-400/30', 'dark:bg-dark-50/30'],
     },
     {
       page: 'Production note',
       headingHtml: 'Production<br>note',
       descHtml:
         '本書執筆にあたって、<br />プロジェクト始動から販売/公開までの裏側を<br />プロジェクトメンバーが会話形式で暴露しています。',
-      cls: ['-note', 'bg-hero-bubbles', 'dark:bg-dark-50/50'],
+      cls: ['-note', 'bg-hero-bubbles-green-400/30 bg-lime-600/20', 'dark:bg-dark-50/30'],
     },
     {
       page: 'Q&A',
       headingHtml: 'Q&A',
       descHtml: '本書やPhantomoonについて、<br />よくある質問とその回答をご紹介します。',
-      cls: ['-qa', 'bg-hero-death-star', 'dark:bg-dark-50/50'],
+      cls: ['-qa', 'bg-hero-death-star-cyan-50/30 bg-green-600/20', 'dark:bg-dark-50/30'],
     },
     {
       page: 'Form',
       headingHtml: 'Form',
       descHtml:
         'FormKitのテストページです。<br />便利なプラグインのようなのでお試しです。<br />送信機能は未実装です。',
-      cls: ['-form', 'bg-hero-charlie-brown'],
+      cls: ['-form', 'bg-hero-charlie-brown-yellow-500/30', 'dark:bg-dark-50/30'],
     },
     {
       page: 'NotFound',

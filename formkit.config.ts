@@ -1,9 +1,10 @@
-import {WindiCSS} from 'vite-plugin-windicss'
-import {ja} from '@formkit/i18n'
+import { generateClasses } from '@formkit/themes';
+// import {WindiCSS} from 'vite-plugin-windicss'
+// import {ja} from '@formkit/i18n'
 import {DefaultConfigOptions} from '@formkit/vue'
 import {ja, en} from '@formkit/i18n'
 // import '@formkit/themes/genesis'
-import '@formkit/themes/windicss'
+import genesis from '@formkit/themes/unocss/genesis'
 import {generateClasses} from '@formkit/themes'
 import theme from './src/theme.js'
 import {createAutoAnimatePlugin} from '@formkit/addons'
@@ -49,14 +50,18 @@ function messageToHTMLPlugin(node) {
 
 export default {
   config: {
+    icons: {
+      ...genesisIcons,,
+    }
+    // classes: generateClasses(genesis),
     classes: generateClasses({
       text: {
         outer: 'mb-5',
         label: 'block mb-1 font-bold text-sm',
         inner:
-          'max-w-md border border-gray-400 rounded-lg mb-1 overflow-hidden focus-within:border-blue-500',
+          'max-w-md border border-gray-400 rounded-lg mb-1 overflow-hidden focus-within:border-blue-500 ',
         input:
-          'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400 dark:bg-dark-50',
+          'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400',
         help: 'text-xs text-gray-500',
         messages: 'list-none p-0 mt-1 mb-0',
         message: 'text-red-500 mb-1 text-xs',
@@ -64,8 +69,8 @@ export default {
     }),
   },
   plugins: [createAutoAnimatePlugin(), addAsteriskPlugin, messageToHTMLPlugin],
-  iconLoaderUrl: (iconName) =>
-    `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/svgs/solid/${iconName}.svg`,
+  // iconLoaderUrl: (iconName) =>
+  //   `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/svgs/solid/${iconName}.svg`,
 }
 
 const config: DefaultConfigOptions = {

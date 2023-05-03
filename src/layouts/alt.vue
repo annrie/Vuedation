@@ -31,7 +31,7 @@ const isTop = computed(() => router.currentRoute.value.name === Page.TOP);
   @apply bg-light-100 pt-80px;
   // padding-top: 80px;
 
-  @include md(max) {
+  @screen lt-md {
     @apply pt-70px;
     // padding-top: 70px;
   }
