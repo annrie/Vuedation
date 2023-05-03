@@ -1,20 +1,20 @@
 import {fileURLToPath, URL} from 'node:url'
 
+import UnoCSS from 'unocss/vite'
 import {defineConfig} from 'vite'
 import {resolve} from 'path'
-import vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
-import Unocss from 'unocss/vite'
-// import presetWind from '@unocss/preset-wind'
+import Vue from '@vitejs/plugin-vue'
 import presetUno from '@unocss/preset-uno'
 import Restart from 'vite-plugin-restart'
 import {VitePWA} from 'vite-plugin-pwa'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
+// import AutoImport from 'unplugin-auto-import/vite'
 import dns from 'dns'
 
-import {startServer} from 'windicss-analysis'
+// @ts-expect-error failed to resolve types
+import VueMacros from 'unplugin-vue-macros/vite'
+
 import UnocssIcons from '@unocss/preset-icons'
 import {presetUno, presetAttributify} from 'unocss'
 dns.setDefaultResultOrder('verbatim')
@@ -24,10 +24,22 @@ dns.setDefaultResultOrder('verbatim')
 export default defineConfig({
   // base: './',
   plugins: [
-    vue({
-      include: [/\.vue$/, /\.md$/],
-    }),
+		VueMacros({
+      setupBlock: true,
+      defineOptions: true,
+      shortEmits: true,
+      hoistStatic: true,
+      defineSlots: true,
+      defineModels: true,
+      namedTemplate: false,
 
+			plugins: {
+				vue: Vue({
+					include: [/\.vue$/, /\.md$/],
+          reactivityTransform: true,
+         }),
+      },
+    }),
     // AutoImport({
     //   imports: [
     //     // presets
@@ -69,20 +81,13 @@ export default defineConfig({
     // Pages({
     //   extensions: ['vue', 'md'],
     // }),
-    // Unocss(),
-    WindiCSS({
-      scan: {
-        dirs: ['.'], // all files in the cwd
-        fileExtensions: ['vue', 'js', 'ts'], // also enabled scanning for js/ts
-      },
-    }),
     Restart({
       restart: ['./dist/*.js'],
     }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    // Unocss(),
+    UnoCSS(),
 
     VitePWA({
       registerType: 'autoUpdate',
@@ -231,22 +236,22 @@ export default defineConfig({
     }),
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss({
-      // when `presets` is specified, the default preset will be disabled
-      // so you could only use the pure CSS icons in addition to your
-      // existing app without polluting other CSS
-      presets: [
-        presetAttributify({}),
-        presetUno(),
-        UnocssIcons({
-          // options
-          extraProperties: {
-            display: 'inline-block',
-          },
-        }),
-        // presetUno() - if you want to use other atomic CSS as well
-      ],
-    }),
+    // UnoCSS({
+    //   // when `presets` is specified, the default preset will be disabled
+    //   // so you could only use the pure CSS icons in addition to your
+    //   // existing app without polluting other CSS
+    //   presets: [
+    //     presetAttributify({}),
+    //     presetUno(),
+    //     UnocssIcons({
+    //       // options
+    //       extraProperties: {
+    //         display: 'inline-block',
+    //       },
+    //     }),
+    //     // presetUno() - if you want to use other atomic CSS as well
+    //   ],
+    // }),
   ],
 
   server: {
@@ -276,7 +281,7 @@ export default defineConfig({
 
   css: {
     preprocessorOptions: {
-      scss: {
+       scss: {
         charset: false,
         // https://blog.ikappio.com/use-global-css-with-vue-cli/
         // additionalData: `@import "@/styles/scss/math.scss";\
@@ -286,6 +291,7 @@ export default defineConfig({
         // @import "@/styles/less/main.scss";`,
         //  @import "@/styles/less/main.less";`,
       },
-    },
-  },
-})
+   },
+},
+}
+)

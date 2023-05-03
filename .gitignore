@@ -32,3 +32,4 @@ generated:production
 tmp
 
 .env
+.vercel

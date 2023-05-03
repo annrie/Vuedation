@@ -16,9 +16,11 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
     "allowJs": true,
     "typeRoots": ["src/@types"],
-    "types": ["vite/client", "vite-plugin-pwa/client"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "unplugin-vue-macros/macros-global"],
     "paths": {
       "@/*": ["src/*"]
     },
@@ -28,6 +30,17 @@
         "name": "typescript-tslint-plugin"
       }
     ]
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-options",
+      "@vue-macros/volar/define-models",
+      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/short-vmodel",
+      "@vue-macros/volar/define-slots",
+      "@vue-macros/volar/export-props"
+    ],
   },
   "include": [
     "src/**/*.ts",

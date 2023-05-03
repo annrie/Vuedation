@@ -56,16 +56,8 @@ export default defineComponent({
 .PageHero__wrap {
   @apply top-0 right-0 bottom-0 left-0 z-2 absolute lg: pointer-events-none;
 
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // z-index: 2;
-  // pointer-events: none;
-  @include md(min) {
+  @screen md {
     @apply py-0 px-20px;
-    // padding: 0 20px;
   }
 }
 
@@ -80,39 +72,21 @@ export default defineComponent({
 // }
 .PageHero__inner {
   @apply h-full mx-auto my-0 max-w-1366px box-border;
-
-  // max-width: 1366px;
-  // height: 100%;
-  // margin: 0 auto;
-  // box-sizing: border-box;
   @include md(min) {
     @apply flex items-center justify-center;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
   }
 }
 
 .PageHero__content {
   @apply mx-auto my-0 w-full max-w-1150px z-0 relative box-border;
-  // position: relative;
-  // z-index: 0;
-  // width: 100%;
-  // max-width: 1150px;
-  // margin: 0 auto;
-  padding-right: percentage(calc(575 / 1326));
+   padding-right: percentage(calc(575 / 1326));
 
-  // box-sizing: border-box;
   @include md(min) {
     @apply flex flex-col justify-center;
-    // display: flex;    // flex-direction: column;
-    // justify-content: center;
   }
 
   @include md(max) {
     @apply h-full px-20px pt-130px pb-0;
-    // height: 100%;
-    // padding: 130px 20px 0;
   }
 }
 
@@ -160,26 +134,22 @@ export default defineComponent({
 
   .PageHero__wrap.-about & {
     @apply text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-author & {
     @apply text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-qa & {
     @apply dark: text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-inquiry & {
     @apply text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-note & {
-    @apply dark: text-white;
+    @apply text-bluegray dark: text-white;
 
     @include md(max) {
       text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
@@ -188,17 +158,14 @@ export default defineComponent({
 
   span {
     @apply inline-block;
-    // display: inline-block;
   }
 }
 
 .PageHero__headingEn {
   @apply w-full text-hex-42b883;
-  // width: 100%;
   margin-bottom: em(24, 100);
   font-size: em(100, 36);
   line-height: 1.2;
-  // color: $COLOR_MAIN;
   text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
 
   @include lg(max) {
@@ -208,14 +175,11 @@ export default defineComponent({
   @include md(max) {
     @apply text-5xl;
     margin-bottom: em(8, 60);
-    // font-size: em(60, 20);
   }
 }
 
 .PageHero__description {
   @apply m-0 text-xl;
-  // margin: 0;
-  // font-size: em(20, 16);
   line-height: 2.3;
 
   @include lg(max) {
@@ -224,72 +188,48 @@ export default defineComponent({
 
   @include md(max) {
     @apply text-lg;
-    // font-size: em(15, 16);
     line-height: 1.5625;
   }
 
   .PageHero__wrap.-about & {
     @apply text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-author & {
     @apply text-white;
-    // color: #fff;
   }
 
   .PageHero__wrap.-form & {
     @apply text-white;
-    // color: #fff;
   }
 }
 
 .PageHero__logo {
   @apply top-1/2 left-1/2 -z-1 absolute;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  transform: translate(-48px, -50%);
-  // z-index: -1;
-  width: percentage(calc(649 / 1113));
+    transform: translate(-48px, -50%);
+    width: percentage(calc(649 / 1113));
 
   @include md(max) {
     @apply top-38px w-336px -translate-x-86px;
-    // top: 38px;
-    // transform: translateX(-86px);
-    // width: 336px;
   }
 
   & img {
     @apply opacity-0;
-    // opacity: 0;
   }
 
   &::after {
     @apply bg-no-repeat -z-1 absolute;
     content: "";
-    // position: absolute;
-    // z-index: -1;
-    // background-repeat: no-repeat;
     background-size: 100%;
   }
 
   .PageHero__wrap.-home & {
     &::after {
       @apply h-269px -right-20px bottom-45px w-784px;
-      // right: -20px;
-      // bottom: 45px;
-      // width: 784px;
-      // height: 269px;
       background-image: url($PATH + "hero-bg-home.svg");
 
       @include md(max) {
         @apply right-auto h-110px -bottom-16px -left-36px w-321px;
-        // left: -36px;
-        // right: auto;
-        // bottom: -16px;
-        // width: 321px;
-        // height: 110px;
       }
     }
   }
@@ -297,19 +237,10 @@ export default defineComponent({
   .PageHero__wrap.-about & {
     &::after {
       @apply h-208px right-8px bottom-99px w-779px;
-      // right: 8px;
-      // bottom: 99px;
-      // width: 779px;
-      // height: 208px;
       background-image: url($PATH + "hero-bg-about.svg");
 
       @include md(max) {
         @apply right-auto h-85px bottom-14px -left-320px w-319px;
-        // left: -32px;
-        // right: auto;
-        // bottom: 14px;
-        // width: 319px;
-        // height: 85px;
       }
     }
   }
@@ -317,38 +248,21 @@ export default defineComponent({
   .PageHero__wrap.-author & {
     &::after {
       @apply h-208px right-27px bottom-99px w-902px;
-      // right: 27px;
-      // bottom: 99px;
-      // width: 902px;
-      // height: 208px;
-      background-image: url($PATH + "hero-bg-author.svg");
+       background-image: url($PATH + "hero-bg-author.svg");
 
       @include md(max) {
         @apply right-auto h-85px bottom-10px -left-65px w-369px;
-        // left: -65px;
-        // right: auto;
-        // bottom: 10px;
-        // width: 369px;
-        // height: 85px;
-      }
+       }
     }
   }
 
   .PageHero__wrap.-note & {
     &::after {
       @apply h-228px -right-16px bottom-63px w-709px;
-      // right: -16px;
-      // bottom: 63px;
-      // width: 709px;
-      // height: 228px;
       background-image: url($PATH + "hero-bg-note.svg");
 
       @include md(max) {
         @apply h-163px -right-7px -bottom-72px w-484px;
-        // right: -7px;
-        // bottom: -72px;
-        // width: 484px;
-        // height: 163px;
       }
     }
   }
@@ -356,18 +270,10 @@ export default defineComponent({
   .PageHero__wrap.-qa & {
     &::after {
       @apply h-248px -right-20px bottom-48px w-674px;
-      // right: -20px;
-      // bottom: 48px;
-      // width: 674px;
-      // height: 248px;
       background-image: url($PATH + "hero-bg-qa.svg");
 
       @include md(max) {
         @apply h-102px right-55px -bottom-6px w-276px;
-        // right: 55px;
-        // bottom: -6px;
-        // width: 276px;
-        // height: 102px;
       }
     }
   }
@@ -375,30 +281,21 @@ export default defineComponent({
   .PageHero__wrap.-form & {
     &::after {
       @apply h-248px -right-20px bottom-48px w-674px;
-      // right: -20px;
-      // bottom: 48px;
-      // width: 674px;
-      // height: 248px;
-      background-image: url($PATH + "hero-bg-form.svg");
+       background-image: url($PATH + "hero-bg-form.svg");
 
       @include md(max) {
         @apply h-102px right-55px -bottom-6px w-276px;
-        // right: 55px;
-        // bottom: -6px;
-        // width: 276px;
-        // height: 102px;
       }
     }
   }
 }
 
 .PageHero__scroll {
-   @apply h-[60px] bottom-[1%] left-1/2 w-[2px] z-4 -translate-x-[50%] absolute;
+  @apply h-[60px] bottom-[1%] left-1/2 w-[2px] z-4 -translate-x-[50%] absolute;
   animation: arrowMove 1s ease-in-out infinite;
-
-    @include md(max) {
+  @include md(max) {
     @apply bottom-[10px];
-     }
+   }
 
   .PageHero__wrap.-home & {
     @apply bg-gray-500 dark: bg-white;
@@ -412,9 +309,9 @@ export default defineComponent({
     @apply bg-white;
   }
 
-  .PageHero__wrap.-note & {
-    @apply bg-gray-500 dark: bg-white;
-  }
+  // .PageHero__wrap.-note & {
+  //   @apply bg-gray-500 dark: bg-white;
+  // }
 
   .PageHero__wrap.-qa & {
     @apply bg-gray-500 dark: bg-white;
@@ -444,6 +341,10 @@ export default defineComponent({
 /*Scrollテキストの描写*/
 .PageHero__scroll span {
   @apply text-xs bottom-[10px] -left-[20px] text-gray-500 tracking-[0.05em] absolute dark: text-light-500;
+  /*描画位置*/
+  //position: absolute;
+  //left: -20px;
+  //bottom: 10px;
 
   /*テキストの形状*/
   //color: #6b7280;
@@ -470,7 +371,7 @@ export default defineComponent({
 
 /* 矢印の描写 */
 .PageHero__scroll::before {
-  @apply bg-gray-500 h-[20px] -right-[6px] bottom-0 w-[2px] absolute dark: bg-light-500;
+  @apply h-[20px] -right-[6px] bottom-0 w-[2px] absolute dark: bg-light-500;
   content: "";
 
   /*描画位置*/
@@ -496,9 +397,9 @@ export default defineComponent({
     @apply bg-light-500;
   }
 
-  .PageHero__wrap.-note & {
-    @apply bg-gray-500 dark: bg-white;
-  }
+  // .PageHero__wrap.-note & {
+  //   @apply bg-gray-500 dark: bg-white;
+  // }
 
   .PageHero__wrap.-qa & {
     @apply bg-gray-500 dark: bg-white;
@@ -519,8 +420,12 @@ export default defineComponent({
   //right: 0;
 
   /*矢印の形状*/
-  //width: 1px;
+  //width: 1px   ;
   //height: 60px;
   //background: #eee;
+
+  // .PageHero__wrap.-home & {
+  //   @apply bg-gray-500;
+  // }
 }
 </style>

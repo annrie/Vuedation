@@ -8,13 +8,13 @@ import {createAutoAnimatePlugin} from '@formkit/addons'
 import {applicationIcons, ethereum} from '@formkit/icons'
 import {plugin, defaultConfig} from '@formkit/vue'
 import {generateClasses, createThemePlugin} from '@formkit/themes'
-import '@formkit/themes/windicss'
-import '@formkit/themes/unocss'
+import formKitUnocssPlugin from '@formkit/themes/unocss'
 import theme from './theme'
 import '@unocss/reset/tailwind.css'
 import './styles'
 import 'animate.css'
 import 'uno.css'
+import 'virtual:unocss-devtools'
 // import VueGtag from 'vue-gtag-next'
 // import VueLazyLoad from 'vue3-lazyload'
 import Notifications from '@kyvg/vue3-notification'
@@ -97,24 +97,6 @@ createApp(App)
       plugins: [createAutoAnimatePlugin({}), createThemePlugin()],
     })
   )
-  // .use(VueSocials)
-  // .use(VueGtag, {id: 'GTM-MMZBBPV', router}) // https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
-
-  // .use(VueLazyLoad, {
-  //   loading: '',
-  //   error: '',
-  //   lifecycle: {
-  //     loading: (el: string) => {
-  //       console.log('loading', el)
-  //     },
-  //     error: (el: string) => {
-  //       console.log('error', el)
-  //     },
-  //     loaded: (el: string) => {
-  //       console.log('loaded', el)
-  //     },
-  //   },
-  // })
   .use(head)
   .use(Notifications)
   // .component('fa', FontAwesome)
@@ -122,19 +104,3 @@ createApp(App)
   .component('font-awesome-layers', FontAwesomeLayers)
   .component('font-awesome-layer-text', FontAwesomeLayersText)
   .mount('#app')
-
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', function () {
-//     //今回はDocRoot以下をServiceWorkerのスコープとします
-//     navigator.serviceWorker.register('/sw.js', {scope: './'}).then(
-//       function (registration) {
-//         // 登録成功
-//         console.log('ServiceWorker registration successful with scope: ', registration.scope)
-//       },
-//       function (err) {
-//         // 登録失敗
-//         console.log('ServiceWorker registration failed: ', err)
-//       }
-//     )
-//   })
-// }

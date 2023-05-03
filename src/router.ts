@@ -90,7 +90,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 //TOP、NotFoundの削除の削除
 export const menuRoutes = routes.slice(1, routes.length - 1)
-// export const menuRoutes = routes.slice(1, routes.length - 2)
+export const breadRoutes = routes.slice(1, routes.length - 1)
 
 // 循環参照になるため、@/store/index.tsに移した
 // export const Page = {
