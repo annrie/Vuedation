@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/annrie/Vuedation/compare/v1.5.4...v1.6.0) (2023-05-04)
+
+
+### ビルドプロセスまたは補助ツールの変更
+
+* 🤖 change windicss to unocss ([c42bf44](https://github.com/annrie/Vuedation/commit/c42bf44beb1301506528f7d7399ef68001ca51eb))
+
 ### [1.5.4](https://github.com/annrie/Vuedation/compare/v1.5.3...v1.5.4) (2023-02-24)
 
 

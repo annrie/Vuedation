@@ -1,6 +1,6 @@
 {
   "name": "vuedation",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "private": true,
   "description": "A Vue.js project use vite",
   "author": "annrie <annrie@users.noreply.github.com>",
@@ -14,7 +14,10 @@
     "format:stylesheet": "prettier-stylelint --quiet --write src/assets/scss/**/*",
     "lint:stylesheet": "stylelint --fix src/assets/scss/**/*.scss",
     "prepare": "husky install",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "dependencies": {
     "@formkit/addons": "^0.16.5",
