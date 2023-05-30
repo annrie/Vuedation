@@ -24,7 +24,7 @@
   "editor.stickyScroll.enabled": true,
   "editor.hover.sticky": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": false,
+    "source.fixAll": true,
     "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
     "source.organizeImports": false
   },
@@ -167,7 +167,7 @@
   // "svg.preview.mode": "svg",
   "volar.autoCompleteRefs": false,
   "volar.completion.preferredTagNameCase": "pascal",
-  // "volar.autoImport": true,
+  //"volar.autoImport": true,
   "unocss.enableCodeFolding": false,
   "prettier.enable": false, // I only use Prettier for manually formatting
   "prettier.printWidth": 200,
@@ -251,9 +251,9 @@
     "editor.lineHighlightBorder": "#9fced11f",
     "editor.lineHighlightBackground": "#1073cf2d"
   },
-  "workbench.colorTheme": "Vitesse Light",
+  "workbench.colorTheme": "Vitesse Dark",
   "vue.features.codeActions.enable": false,
   "scss.validate": false,
-  "css.validate": false,
-  "vue.codeActions.enabled": true
+	"css.validate": false,
+	"vue.codeActions.enabled": true
 }
