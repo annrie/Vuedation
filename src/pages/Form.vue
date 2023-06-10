@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
-import { FormKitIcon } from "@formkit/vue";
+// import { FormKitIcon } from "@formkit/vue";
 </script>
 
 <template>
-  <PageBreadcrumbs label="Form" />
+<AmBreadcrumbs
+    :showCurrentCrumb="true"
+/>
   <section class="form">
     <FormKit
       type="form"

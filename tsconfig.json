@@ -20,7 +20,7 @@
     "strictNullChecks": true,
     "allowJs": true,
     "typeRoots": ["src/@types"],
-    "types": ["vite/client", "vite-plugin-pwa/client", "unplugin-vue-macros/macros-global"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "unplugin-vue-macros/macros-global","three"],
     "paths": {
       "@/*": ["src/*"]
     },

@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import {createHead} from '@vueuse/head'
+import breadcrumbs from 'vue-3-breadcrumbs';
 import {createAutoAnimatePlugin} from '@formkit/addons'
 import {applicationIcons, ethereum} from '@formkit/icons'
 import {plugin, defaultConfig} from '@formkit/vue'
@@ -98,6 +99,9 @@ createApp(App)
     })
   )
   .use(head)
+ .use(breadcrumbs, {
+    includeComponent: true
+  })
   .use(Notifications)
   // .component('fa', FontAwesome)
   .component('font-awesome-icon', FontAwesomeIcon)

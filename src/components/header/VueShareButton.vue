@@ -1,26 +1,16 @@
-<!-- https://mebee.info/2021/07/15/post-38818/ -->
+<script setup lang="ts">
+import { useToggle } from "@vueuse/shared";
+import { isDark } from "@/composables/dark";
+
+const toggleDark = useToggle(isDark);
+</script>
+
 <template>
   <div class="ShareButton">
-    <TwitterButton
-      url="https://vuedation.phantomoon.com/"
-      class="share-button--circle share-button--outline"
-      shareDescription="Vue + Vite で構築した仮想書籍サイトです"
-      btnText=""
-    />
-    <FacebookButton
-      url="https://vuedation.phantomoon.com/"
-      class="share-button--circle share-button--outline"
-      title="Vuedation"
-      quote="Vue + Vite で構築した仮想書籍サイトです"
-      btnText=""
-    />
-    <LinkedInButton
-      url="https://vuedation.phantomoon.com/"
-      class="share-button--circle share-button--outline"
-      btnText=""
-    />
-    <!-- https://postsrc.com/code-snippets/how-to-add-dark-mode-toggle-in-vuejs -->
-    <div class="bg-transparent rounded-lg w-auto p-4 pt-6 inline-flex at-tb:(pt-4)">
+
+
+
+     <div class="bg-transparent rounded-lg w-auto p-4 pt-6 inline-flex at-tb:(pt-4)">
       <label for="toggle" class="cursor-pointer inline-flex relative items-center">
         <input
           type="checkbox"
@@ -39,16 +29,6 @@
     </button>
   </div>
 </template>
-
-<script setup lang="ts">
-import TwitterButton from "vue-share-buttons/src/components/TwitterButton.vue";
-import FacebookButton from "vue-share-buttons/src/components/FacebookButton.vue";
-import LinkedInButton from "vue-share-buttons/src/components/LinkedInButton.vue";
-import { useToggle } from "@vueuse/shared";
-import { isDark } from "@/composables/dark";
-
-const toggleDark = useToggle(isDark);
-</script>
 
 <style lang="scss" scoped>
 .ShareButton {

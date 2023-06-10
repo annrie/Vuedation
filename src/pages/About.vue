@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
 import PageModal from "@/components/pages/PageModal.vue";
 import { AppData } from "@/store/app.data";
 import SwiperCore, { Navigation } from "swiper";
@@ -21,7 +20,6 @@ SwiperCore.use([Navigation]);
 export default defineComponent({
   name: "About",
   components: {
-    PageBreadcrumbs,
     PageModal,
     Swiper,
     SwiperSlide,
@@ -65,7 +63,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <PageBreadcrumbs label="About" />
+<AmBreadcrumbs
+    :showCurrentCrumb="true"
+/>
   <section class="About">
     <h2 class="About__heading">
       <span> <em class="About__headingEn">Vue.js 3.x</em> を、 </span>
