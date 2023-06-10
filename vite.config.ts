@@ -5,11 +5,11 @@ import {defineConfig} from 'vite'
 import {resolve} from 'path'
 import Vue from '@vitejs/plugin-vue'
 import presetUno from '@unocss/preset-uno'
-import Restart from 'vite-plugin-restart'
+import ViteRestart from 'vite-plugin-restart'
 import {VitePWA} from 'vite-plugin-pwa'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
-// import AutoImport from 'unplugin-auto-import/vite'
+//  import AutoImport from 'unplugin-auto-import/vite'
 import dns from 'dns'
 
 // @ts-expect-error failed to resolve types
@@ -81,7 +81,7 @@ export default defineConfig({
     // Pages({
     //   extensions: ['vue', 'md'],
     // }),
-    Restart({
+    ViteRestart({
       restart: ['./dist/*.js'],
     }),
 
@@ -236,6 +236,22 @@ export default defineConfig({
     }),
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
+    // UnoCSS({
+    //   // when `presets` is specified, the default preset will be disabled
+    //   // so you could only use the pure CSS icons in addition to your
+    //   // existing app without polluting other CSS
+    //   presets: [
+    //     presetAttributify({}),
+    //     presetUno(),
+    //     UnocssIcons({
+    //       // options
+    //       extraProperties: {
+    //         display: 'inline-block',
+    //       },
+    //     }),
+    //     // presetUno() - if you want to use other atomic CSS as well
+    //   ],
+    // }),
     // UnoCSS({
     //   // when `presets` is specified, the default preset will be disabled
     //   // so you could only use the pure CSS icons in addition to your

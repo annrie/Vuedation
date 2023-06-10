@@ -329,7 +329,7 @@ export default defineComponent({
       new THREE.TextureLoader().load(
         "/static/texture/logo-vuedation.png",
         (tex) => {
-          const geometry1 = new THREE.PlaneBufferGeometry(0.5, 0.5);
+          const geometry1 = new THREE.PlaneGeometry(0.5, 0.5);
           const logoMaterial = new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
             transparent: true,

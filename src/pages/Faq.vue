@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
 import PageAccordion from "@/components/pages/PageAccordion.vue";
 import { AppData } from "@/store/app.data";
 
@@ -7,7 +6,9 @@ const faqData = AppData.faqDataList;
 </script>
 
 <template>
-  <PageBreadcrumbs label="Q&A" />
+<AmBreadcrumbs
+    :showCurrentCrumb="true"
+/>
   <section class="QA">
     <h2 class="QA__heading">よくある質問</h2>
     <div class="QA__contents">

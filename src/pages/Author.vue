@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
 // import {getAsset} from '@/modules/image'
 
 // const images = {
@@ -19,7 +18,9 @@ import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
 </script>
 
 <template>
-  <PageBreadcrumbs label="Author" />
+<AmBreadcrumbs
+    :showCurrentCrumb="true"
+/>
   <section class="Introduction">
     <h2 class="Introduction__heading">
       <span class="Introduction__headingLogo">

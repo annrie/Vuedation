@@ -1,3 +1,4 @@
+import { breadcrumbs } from 'vue-3-breadcrumbs';
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import routes from '@/pages'
 import store from '@/store'
@@ -14,6 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Top',
     component: Top,
     meta: {
+      breadcrumb: 'Home',
       // title: 'Topページ',
       // layout: 'default',
       description:
@@ -25,6 +27,16 @@ const routes: Array<RouteRecordRaw> = [
         name: 'TopNews',
         props: true,
         component: () => import('./pages/TopNews.vue'),
+        meta: {
+          breadcrumb(route, app) {
+              // Using api
+              let breadcrumb = app.config.globalProperties.$api.getBreadcrumb(route)
+              return {
+                  label: `SubItem ${breadcrumb}`,
+                  link: `${route.path}`
+              }
+          },
+      },
       },
     ],
   },
@@ -34,6 +46,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('./pages/About.vue'),
     meta: {
       title: 'Aboutページ',
+      breadcrumb: 'About',
       // layout: 'default',
       description:
         '本書を徹底解剖！目次の紹介とともに、学んでいただきたい内容や意図をご紹介します。',
@@ -45,6 +58,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('./pages/Author.vue'),
     meta: {
       title: 'Authorページ',
+      breadcrumb: 'Author',
       description:
         'Webと映像を融合して、世界にひとつのモノづくりを提供する。MONSTER DIVEは、「職人的なこだわりとオタク的な探究心」を持つプロフェッショナル＆スペシャリスト集団です。',
     },
@@ -55,6 +69,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('./pages/ProductionNote.vue'),
     meta: {
       title: 'ProductionNoteページ',
+      breadcrumb: 'Production note',
       description:
         '本書執筆にあたって、プロジェクト始動から販売/公開までの裏側をプロジェクトメンバーが会話形式で暴露しています。',
     },
@@ -65,6 +80,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('./pages/Faq.vue'),
     meta: {
       title: 'Faqページ',
+      breadcrumb: 'Q&A',
       description: '本書やMONSTER DIVEについて、よくある質問とその回答をご紹介します。',
     },
   },
@@ -74,6 +90,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('./pages/Form.vue'),
     meta: {
       title: 'formkitページ',
+      breadcrumb: 'Form',
       description: 'formkitのテストページ。',
     },
   },
@@ -90,17 +107,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 //TOP、NotFoundの削除の削除
 export const menuRoutes = routes.slice(1, routes.length - 1)
-export const breadRoutes = routes.slice(1, routes.length - 1)
-
-// 循環参照になるため、@/store/index.tsに移した
-// export const Page = {
-//   TOP: 'Top',
-//   ABOUT: 'About',
-//   AUTHOR: 'Author',
-//   PRODUCTIONNOTE: 'ProductionNote',
-//   FAQ: 'Faq',
-//   FORM: 'Form',
-// } as const
+// export const breadRoutes = routes.slice(1, routes.length - 1)
 
 const metaDescription = document.querySelector("meta[name='description']")
 // const apiBaseUrl = import.meta.env.VITE_REMOTE_API_BASE_URL

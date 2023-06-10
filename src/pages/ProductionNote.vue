@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
+// import PageBreadcrumbs from "@/components/pages/PageBreadcrumbs.vue";
 import firebase from "firebase/compat/app";
 import { FirebaseAuth } from "@/firebase/auth";
 
 export default defineComponent({
   name: "ProductionNote",
   components: {
-    PageBreadcrumbs,
+    // PageBreadcrumbs,
   },
   setup() {
     const state = reactive({
@@ -99,137 +99,233 @@ export default defineComponent({
 </script>
 
 <template>
-  <PageBreadcrumbs label="Production note" />
+<AmBreadcrumbs
+    :showCurrentCrumb="true"
+/>
+  <!-- <PageBreadcrumbs label="Production note" /> -->
   <section class="ProductionNote">
-    <h2 v-if="!loginStatus"
-      class="ProductionNote__heading">
+    <h2 v-if="!loginStatus" class="ProductionNote__heading">
       <span>Production Noteを⾒るには</span>
       <span>ログインが必要です。</span>
     </h2>
     <div class="ProductionNote__inner">
       <ul class="ProductionNote__buttons">
         <li class="ProductionNote__buttonItem">
-          <button v-if="!loginStatus"
+          <button
+            v-if="!loginStatus"
             type="button"
             class="ProductionNote__button"
-            @click="onSignInFacebook">
-            <span class="-facebook">Facebook ID</span> でLogin </button>
-          <button v-if="loginStatus"
+            @click="onSignInFacebook"
+          >
+            <span class="-facebook">Facebook ID</span> でLogin
+          </button>
+          <button
+            v-if="loginStatus"
             type="button"
             class="ProductionNote__button"
-            @click="onSignOut"> ログアウト </button>
+            @click="onSignOut"
+          >
+            ログアウト
+          </button>
         </li>
-        <li v-if="!loginStatus"
-          class="ProductionNote__buttonItem">
-          <button type="button"
-            class="ProductionNote__button"
-            @click="onSignInTwitter">
-            <span class="-twitter">Twitter ID</span> でLogin </button>
+        <li v-if="!loginStatus" class="ProductionNote__buttonItem">
+          <button type="button" class="ProductionNote__button" @click="onSignInTwitter">
+            <span class="-twitter">Twitter ID</span> でLogin
+          </button>
         </li>
-        <li v-if="!loginStatus"
-          class="ProductionNote__buttonItem">
-          <button type="button"
-            class="ProductionNote__button"
-            @click="onSignInGoogle"> Google ID でLogin </button>
+        <li v-if="!loginStatus" class="ProductionNote__buttonItem">
+          <button type="button" class="ProductionNote__button" @click="onSignInGoogle">
+            Google ID でLogin
+          </button>
         </li>
       </ul>
     </div>
+  </section>
+  <section v-if="loginStatus" class="Talk">
+    <h2 class="Talk__title">本書籍を出版するあたって</h2>
+    <p class="Talk__paragraph">
+      Phantomoon がなぜVue.jsの書籍を出版したのか。
+      書籍出版に至るまでの制作裏話を、語っていただきました。
+    </p>
+    <section class="Talk__interviewee">
+      <h3 class="Talk__intervieweeHead">インタビュー参加者プロフィール</h3>
+      <dl class="Talk__intervieweeList">
+        <dt class="Talk__intervieweeName prototype">ABC</dt>
+        <dd class="Talk__intervieweeBio prototype">
+          A wonderful serenity has taken possession of my entire soul, like these sweet
+          mornings of spring which I enjoy with my whole heart. I am alone, and feel the
+          charm of existence in this spot, which was created for the bliss of souls like
+          mine.
+        </dd>
+        <dt class="Talk__intervieweeName prototype">VVV</dt>
+        <dd class="Talk__intervieweeBio prototype">
+          A wonderful serenity has taken possession of my entire soul, like these sweet
+          mornings of spring which I enjoy with my whole heart. I am alone, and feel the
+          charm of existence in this spot, which was created for the bliss of souls like
+          mine.
+        </dd>
+        <dt class="Talk__intervieweeName prototype">CCC</dt>
+        <dd class="Talk__intervieweeBio prototype">
+          A wonderful serenity has taken possession of my entire soul, like these sweet
+          mornings of spring which I enjoy with my whole heart. I am alone, and feel the
+          charm of existence in this spot, which was created for the bliss of souls like
+          mine.
+        </dd>
+        <dt class="Talk__intervieweeName prototype">YYY</dt>
+        <dd class="Talk__intervieweeBio prototype">
+          A wonderful serenity has taken possession of my entire soul, like these sweet
+          mornings of spring which I enjoy with my whole heart. I am alone, and feel the
+          charm of existence in this spot, which was created for the bliss of souls like
+          mine.
+        </dd>
+      </dl>
     </section>
-    <section v-if="loginStatus"
-      class="Talk">
-      <h2 class="Talk__title">本書籍を出版するあたって</h2>
-      <p class="Talk__paragraph"> Phantomoon がなぜVue.jsの書籍を出版したのか。 書籍出版に至るまでの制作裏話を、語っていただきました。 </p>
-      <section class="Talk__interviewee">
-        <h3 class="Talk__intervieweeHead">インタビュー参加者プロフィール</h3>
-        <dl class="Talk__intervieweeList">
-          <dt class="Talk__intervieweeName prototype">ABC</dt>
-          <dd class="Talk__intervieweeBio prototype"> A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. </dd>
-          <dt class="Talk__intervieweeName prototype">VVV</dt>
-          <dd class="Talk__intervieweeBio prototype"> A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. </dd>
-          <dt class="Talk__intervieweeName prototype">CCC</dt>
-          <dd class="Talk__intervieweeBio prototype"> A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. </dd>
-          <dt class="Talk__intervieweeName prototype">YYY</dt>
-          <dd class="Talk__intervieweeBio prototype"> A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. </dd>
-        </dl>
-      </section>
-      <section class="Talk__section prototype">
-        <h3 class="Talk__heading"> The Big Oxmox advised her not to do so, because there were </h3>
-        <h4 class="Talk__subHeading">because there were</h4>
-        <p class="Talk__paragraph">
-          <b>ABC</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath
-        </p>
-        <p class="Talk__paragraph">
-          <b>VVV</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down
-        </p>
-        <h4 class="Talk__subHeading"> The Big Oxmox advised her not to do so, because there were </h4>
-        <p class="Talk__paragraph">
-          <b>ABC</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me:
-        </p>
-        <p class="Talk__paragraph">
-          <b>VVV</b> 一When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath
-        </p>
-        <h4 class="Talk__subHeading">because there were</h4>
-        <p class="Talk__paragraph">
-          <b>VVV</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees,
-        </p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath
-        </p>
-        <p class="Talk__paragraph">
-          <b>YYY</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees,
-        </p>
-        <h3 class="Talk__heading"> The Big Oxmox advised her not to do so, because there were </h3>
-        <h4 class="Talk__subHeading">The Big Oxmox advised her not to do so,</h4>
-        <p class="Talk__paragraph">
-          <b>VVV</b> WWhen, while the lovely valley teems with vapour around me, and the meridian sun strikes the
-        </p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> 確When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath
-        </p>
-        <p class="Talk__paragraph">
-          <b>YYY</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among
-        </p>
-        <h4 class="Talk__subHeading">The Big Oxmox advised</h4>
-        <p class="Talk__paragraph"><b>VVV</b> When, while the lovely valley teems</p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth,
-        </p>
-        <p class="Talk__paragraph">
-          <b>YYY</b> When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable
-        </p>
-        <h3 class="Talk__heading"> The Big Oxmox advised her not to do so, because there were </h3>
-        <h4 class="Talk__subHeading">ed for the bliss of souls</h4>
-        <p class="Talk__paragraph">
-          <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-        </p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum
-        </p>
-        <p class="Talk__paragraph">
-          <b>YYY</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an
-        </p>
-        <h4 class="Talk__subHeading"> The Big Oxmox advised her not to do so, because there were </h4>
-        <p class="Talk__paragraph">
-          <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-        </p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing
-        </p>
-        <p class="Talk__paragraph">
-          <b>YYY</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind
-        </p>
-        <p class="Talk__paragraph"><b>ABC</b> It is a paradisematic country,</p>
-        <h4 class="Talk__subHeading"> The Big Oxmox advised her not to do so, because there were </h4>
-        <p class="Talk__paragraph">
-          <b>ABC</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-        </p>
-        <p class="Talk__paragraph">
-          <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it
-        </p>
-        <p class="Talk__paragraph">
-          <b>CCC</b> The Big Oxmox advised her not to do so, because there were
-        </p>
-        <p class="Talk__paragraph">
+    <section class="Talk__section prototype">
+      <h3 class="Talk__heading">
+        The Big Oxmox advised her not to do so, because there were
+      </h3>
+      <h4 class="Talk__subHeading">because there were</h4>
+      <p class="Talk__paragraph">
+        <b>ABC</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+        among the tall grass by the trickling stream; and, as I lie close to the earth, a
+        thousand unknown plants are noticed by me: when I hear the buzz of the little
+        world among the stalks, and grow familiar with the countless indescribable forms
+        of the insects and flies, then I feel the presence of the Almighty, who formed us
+        in his own image, and the breath
+      </p>
+      <p class="Talk__paragraph">
+        <b>VVV</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+      </p>
+      <h4 class="Talk__subHeading">
+        The Big Oxmox advised her not to do so, because there were
+      </h4>
+      <p class="Talk__paragraph">
+        <b>ABC</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+        among the tall grass by the trickling stream; and, as I lie close to the earth, a
+        thousand unknown plants are noticed by me:
+      </p>
+      <p class="Talk__paragraph">
+        <b>VVV</b> 一When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+        among the tall grass by the trickling stream; and, as I lie close to the earth, a
+        thousand unknown plants are noticed by me: when I hear the buzz of the little
+        world among the stalks, and grow familiar with the countless indescribable forms
+        of the insects and flies, then I feel the presence of the Almighty, who formed us
+        in his own image, and the breath
+      </p>
+      <h4 class="Talk__subHeading">because there were</h4>
+      <p class="Talk__paragraph">
+        <b>VVV</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+      </p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> when I hear the buzz of the little world among the stalks, and grow
+        familiar with the countless indescribable forms of the insects and flies, then I
+        feel the presence of the Almighty, who formed us in his own image, and the breath
+      </p>
+      <p class="Talk__paragraph">
+        <b>YYY</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+      </p>
+      <h3 class="Talk__heading">
+        The Big Oxmox advised her not to do so, because there were
+      </h3>
+      <h4 class="Talk__subHeading">The Big Oxmox advised her not to do so,</h4>
+      <p class="Talk__paragraph">
+        <b>VVV</b> WWhen, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the
+      </p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> 確When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+        among the tall grass by the trickling stream; and, as I lie close to the earth, a
+        thousand unknown plants are noticed by me: when I hear the buzz of the little
+        world among the stalks, and grow familiar with the countless indescribable forms
+        of the insects and flies, then I feel the presence of the Almighty, who formed us
+        in his own image, and the breath
+      </p>
+      <p class="Talk__paragraph">
+        <b>YYY</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable foliage of my trees,
+        and but a few stray gleams steal into the inner sanctuary, I throw myself down
+        among
+      </p>
+      <h4 class="Talk__subHeading">The Big Oxmox advised</h4>
+      <p class="Talk__paragraph"><b>VVV</b> When, while the lovely valley teems</p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> and but a few stray gleams steal into the inner sanctuary, I throw
+        myself down among the tall grass by the trickling stream; and, as I lie close to
+        the earth,
+      </p>
+      <p class="Talk__paragraph">
+        <b>YYY</b> When, while the lovely valley teems with vapour around me, and the
+        meridian sun strikes the upper surface of the impenetrable
+      </p>
+      <h3 class="Talk__heading">
+        The Big Oxmox advised her not to do so, because there were
+      </h3>
+      <h4 class="Talk__subHeading">ed for the bliss of souls</h4>
+      <p class="Talk__paragraph">
+        <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it is an almost unorthographic life One day however a small line of blind
+        text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+      </p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it is an almost unorthographic life One day however a small line of blind
+        text by the name of Lorem Ipsum
+      </p>
+      <p class="Talk__paragraph">
+        <b>YYY</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it is an
+      </p>
+      <h4 class="Talk__subHeading">
+        The Big Oxmox advised her not to do so, because there were
+      </h4>
+      <p class="Talk__paragraph">
+        <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it is an almost unorthographic life One day however a small line of blind
+        text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+      </p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing
+      </p>
+      <p class="Talk__paragraph">
+        <b>YYY</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+      </p>
+      <p class="Talk__paragraph"><b>ABC</b> It is a paradisematic country,</p>
+      <h4 class="Talk__subHeading">
+        The Big Oxmox advised her not to do so, because there were
+      </h4>
+      <p class="Talk__paragraph">
+        <b>ABC</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it is an almost unorthographic life One day however a small line of blind
+        text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+      </p>
+      <p class="Talk__paragraph">
+        <b>VVV</b> It is a paradisematic country, in which roasted parts of sentences fly
+        into your mouth. Even the all-powerful Pointing has no control about the blind
+        texts it
+      </p>
+      <p class="Talk__paragraph">
+        <b>CCC</b> The Big Oxmox advised her not to do so, because there were
+      </p>
+      <p class="Talk__paragraph">
         <b>YYY</b> Far far away, behind the word mountains, far from the countries Vokalia
         and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
         right at the coast of the Semantics, a large language ocean. A small river named
