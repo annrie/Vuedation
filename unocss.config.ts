@@ -105,7 +105,7 @@ export default defineConfig({
   safelist: 'prose prose-sm m-auto text-left'.split(' '),
 	blocklist: ['container'],
   content: [
-    './src/**/*.{html,js,vue}',
+    './src/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}',
     './node_modules/@formkit/themes/dist/unocss/genesis/index.cjs',
   ],
   plugins: [FormKitVariants],

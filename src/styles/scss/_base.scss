@@ -10,3 +10,11 @@ img {
   margin: 0;
   display: block;
 }
+
+[class*="before:"]::before {
+  content: "";
+}
+
+[class*="after:"]::after {
+  content: "";
+}

@@ -371,7 +371,7 @@ export default defineComponent({
 }
 
 .AboutDetail__listItem {
-  @apply font-semibold list-none pl-4 -indent-sm;
+  @apply font-semibold list-none pl-4;
 
   // list-style-type: none;
   // padding-left: 1em;
@@ -382,9 +382,8 @@ export default defineComponent({
     // margin-top: 10px;
   }
 
-  &::before {
-    @apply content-・;
-    // content: "・";
+   &::before {
+     content: "・";
   }
 }
 
