@@ -69,7 +69,7 @@
     "three": "^0.153.0",
     "three.proton.js": "^0.2.3",
     "vee-validate": "^4.9.6",
-    "vue": "^3.3.7",
+    "vue": "^3.3.8",
     "vue-3-breadcrumbs": "^2.0.0",
     "vue-gtag-next": "^1.14.0",
     "vue-head": "^2.2.0",
