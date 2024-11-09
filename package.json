@@ -138,6 +138,7 @@
     "prettier": "^2.8.8",
     "prettier-eslint": "^15.0.1",
     "sass": "^1.62.1",
+    "sass-embedded": "^1.80.6",
     "standard-version": "^9.5.0",
     "stylelint": "^15.6.1",
     "stylelint-config-html": "^1.1.0",

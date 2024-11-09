@@ -296,14 +296,12 @@ export default defineConfig({
   },
 
   css: {
-    preprocessorOptions: {
-       scss: {
-        charset: false,
-        // https://blog.ikappio.com/use-global-css-with-vue-cli/
-        // additionalData: `@import "@/styles/scss/math.scss";\
-        //                   @import "@/styles/scss/components/mixins/mixin.scss";`,
-        // additionalData: `@use "sass:math"; \
-        additionalData: `@import "@/styles/scss/main.scss";`,
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: ["legacy-js-api"],
+          // https://vitejs.dev/config/shared-options#css-preprocessoroptions
+          api: 'modern-compiler',
+          additionalData: `@import "@/styles/scss/main.scss";`,
         // @import "@/styles/less/main.scss";`,
         //  @import "@/styles/less/main.less";`,
       },

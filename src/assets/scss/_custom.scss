@@ -1,0 +1,31 @@
+.flex-center-x {
+  @apply
+    flex
+    flex-wrap
+    justify-center;
+}
+
+.flex-center-y {
+  @apply
+    flex
+    items-center
+    flex-wrap;
+}
+
+.flex-center-xy {
+  @apply
+    flex
+    items-center
+    flex-wrap
+    justify-center;
+}
+
+.am-breadcrumbs {
+  @apply mx-auto mt-50px mb-0 max-w-1000px;
+  @include lg(max) {
+    @apply py-0 px-20px;
+  }
+}
+a.am-breadcrumbs__link {
+  @apply text-blue-300;
+}
