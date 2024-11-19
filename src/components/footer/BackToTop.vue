@@ -39,37 +39,25 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
+
 .scrolltop {
   @apply fixed right-4 bottom-6 flex justify-center justify-center items-center p-2 bg-transparent rounded-lg z-3 delay-400 invisible;
-  // position: fixed;
-  // right: 1rem;
-  // bottom: -20%;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // padding: 0.5rem;
-  // background-color: transparent;
-  // // background-color: rgba(123 111 113 / 70%);
-  // border-radius: 0.5rem;
-  // z-index: 3;
-  // transition: 0.4s;
-  // visibility: hidden;
 
   &:hover {
-    @apply bg-hex-f5f;
-    // background-color: #f5f;
+    background-color: #f5f;
   }
 
   &__icon {
     @apply text-8xl;
-    // font-size: 6rem;
-    color: lighten(#f5f, 10%);
+    color: color.adjust(#f5f, $lightness: 10%);
   }
 }
 
 .show-scroll {
   @apply visible bottom-14;
-  // visibility: visible;
-  // bottom: 1.5rem;
 }
 </style>

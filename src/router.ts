@@ -1,11 +1,11 @@
 import { breadcrumbs } from 'vue-3-breadcrumbs';
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import routes from '@/pages'
-import store from '@/store'
-import {DispatchType} from '@/store/app.config'
-import Top from './pages/Index.vue'
+import routes from '~/pages'
+import store from '~/store'
+import {DispatchType} from '~/store/app.config'
+import Top from './pages/index.vue'
 // import Error404 from './pages/404.vue'
-import {AppData} from '@/store/app.data'
+import {AppData} from '~/store/app.data'
 // import {trackRouter} from 'vue-gtag-next'
 // import log from '@/middleware/log'
 

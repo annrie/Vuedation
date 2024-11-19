@@ -1,6 +1,11 @@
 // Import Vue stuff.
+import { ViteSSG } from 'vite-ssg'
+import { setupLayouts } from 'virtual:generated-layouts'
+import { routes } from 'vue-router/auto-routes'
 import {createApp} from 'vue'
 import App from './App.vue'
+import Tabs from 'vue3-tabs';
+import type { UserModule } from './types'
 import router from './router'
 import store from './store'
 import {createHead} from '@vueuse/head'
@@ -12,7 +17,8 @@ import {generateClasses, createThemePlugin} from '@formkit/themes'
 import formKitUnocssPlugin from '@formkit/themes/unocss'
 import theme from './theme'
 import '@unocss/reset/tailwind.css'
-import './styles'
+//import './styles/scss/index.scss'
+//import './styles/scss/main.scss'
 import 'animate.css'
 import 'uno.css'
 import 'virtual:unocss-devtools'
@@ -52,6 +58,8 @@ library.add(
   faFacebook
 )
 dom.watch()
+
+
 
 // Object.keys(AllRules).forEach((rule) => {
 //   defineRule(rule, AllRules[rule])
@@ -103,6 +111,7 @@ createApp(App)
     includeComponent: true
   })
   .use(Notifications)
+  .use(Tabs)
   // .component('fa', FontAwesome)
   .component('font-awesome-icon', FontAwesomeIcon)
   .component('font-awesome-layers', FontAwesomeLayers)

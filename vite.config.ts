@@ -1,15 +1,18 @@
-import {fileURLToPath, URL} from 'node:url'
-
+//import {fileURLToPath, URL} from 'node:url'
+import path from 'node:path'
 import UnoCSS from 'unocss/vite'
 import {defineConfig} from 'vite'
-import {resolve} from 'path'
 import Vue from '@vitejs/plugin-vue'
+import Layouts from 'vite-plugin-vue-layouts'
 import presetUno from '@unocss/preset-uno'
 import ViteRestart from 'vite-plugin-restart'
 import {VitePWA} from 'vite-plugin-pwa'
-import Pages from 'vite-plugin-pages'
-import Components from 'unplugin-vue-components/vite'
-//  import AutoImport from 'unplugin-auto-import/vite'
+import VueDevTools from 'vite-plugin-vue-devtools'
+//import Components from 'unplugin-vue-components/vite'
+//import AutoImport from 'unplugin-auto-import/vite'
+import WebfontDownload from 'vite-plugin-webfont-dl'
+import VueRouter from 'unplugin-vue-router/vite'
+//import { VueRouterAutoImports } from 'unplugin-vue-router'
 import dns from 'dns'
 
 // @ts-expect-error failed to resolve types
@@ -22,16 +25,22 @@ dns.setDefaultResultOrder('verbatim')
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(__dirname, 'src')}/`,
+      '@/': `${path.resolve(__dirname, 'src')}/`,
+    },
+  },
   // base: './',
   plugins: [
 		VueMacros({
-      setupBlock: true,
-      defineOptions: true,
-      shortEmits: true,
-      hoistStatic: true,
-      defineSlots: true,
-      defineModels: true,
-      namedTemplate: false,
+//      setupBlock: true,
+//      defineOptions: true,
+//      shortEmits: true,
+//      hoistStatic: true,
+//      defineSlots: true,
+//      defineModels: true,
+//      namedTemplate: false,
 
 			plugins: {
 				vue: Vue({
@@ -40,54 +49,60 @@ export default defineConfig({
          }),
       },
     }),
-    // AutoImport({
-    //   imports: [
-    //     // presets
-    //     'vue',
-    //     'vue-router',
-
-    //     // custom
-    //     {
-    //       vuex: [],
-    //       axios: [
-    //         // default imports
-    //         ['default', 'axios'], // import { default as axios } from 'axios',
-    //       ],
-    //     },
-    //   ],
-
-    //   dts: 'src/auto-imports.d.ts',
-    //   dirs: ['./src/composables', './src/store', './src/modules'],
-    //   include: [
-    //     /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-    //     /\.vue$/,
-    //     /\.vue\?vue/, // .vue
-    //     /\.md$/, // .md
-    //   ],
-    // }),
-
+//     AutoImport({
+//       imports: [
+//         // presets
+//         'vue',
+//         'vue-router',
+//        '@vueuse/head',
+//        '@vueuse/core',
+//        VueRouterAutoImports,
+//        {
+//          // add any other imports you were relying on
+//          'vue-router/auto': ['useLink'],
+//        },
+//      ],
+//      dts: 'src/auto-imports.d.ts',
+//      dirs: [
+//        'src/composables',
+//        'src/stores',
+//      ],
+//      vueTemplate: true,
+//    }),
     // https://github.com/antfu/unplugin-vue-components
-    // Components({
-    //   dirs: ['src/components'],
-    //   deep: true,
-    //   directoryAsNamespace: true,
-    //   // allow auto load markdown components under `./src/components/`
-    //   extensions: ['vue', 'md'],
-    //   // allow auto import and register components used in markdown
-    //   include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-    //   dts: 'src/components.d.ts',
-    // }),
+//     Components({
+//      // allow auto load markdown components under `./src/components/`
+//      extensions: ['vue', 'md'],
+//      // allow auto import and register components used in markdown
+//      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+//      dts: 'src/components.d.ts',
+//     }),
 
-    // Pages({
-    //   extensions: ['vue', 'md'],
-    // }),
+
+    // https://github.com/posva/unplugin-vue-router
+    VueRouter({
+      extensions: ['.vue', '.md'],
+      dts: 'src/typed-router.d.ts',
+    }),
+
     ViteRestart({
       restart: ['./dist/*.js'],
+      extensions: ['.vue', '.md'],
+      dts: 'src/typed-router.d.ts',
     }),
+
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     UnoCSS(),
+
+    // https://github.com/feat-agency/vite-plugin-webfont-dl
+    WebfontDownload(),
+
+    // https://github.com/webfansplz/vite-plugin-vue-devtools
+    VueDevTools(),
 
     VitePWA({
       registerType: 'autoUpdate',
@@ -103,7 +118,7 @@ export default defineConfig({
       strategies: 'injectManifest',
       useCredentials: true,
       manifest: {
-        name: 'Vuedation with vite',
+        name: 'Vuedation',
         short_name: 'Vuedation',
         theme_color: '#ffffff',
         start_url: '/',
@@ -270,6 +285,23 @@ export default defineConfig({
     // }),
   ],
 
+  // https://github.com/antfu/vite-ssg
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    crittersOptions: {
+      reduceInlineStyles: false,
+    },
+    onFinished() {
+      generateSitemap()
+    },
+  },
+
+  ssr: {
+    // TODO: workaround until they support native ESM
+    noExternal: ['workbox-window'],
+  },
+
   server: {
     host: true,
     open: true,
@@ -288,12 +320,12 @@ export default defineConfig({
     chunkSizeWarningLimit: 1500,
   },
   logLevel: 'info',
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-    dedupe: ['vue'], // https://github.com/antonreshetov/vue-unicons/issues/49
-  },
+//  resolve: {
+//    alias: {
+//      '@': fileURLToPath(new URL('./src', import.meta.url)),
+//    },
+//    dedupe: ['vue'], // https://github.com/antonreshetov/vue-unicons/issues/49
+//  },
 
   css: {
       preprocessorOptions: {
@@ -301,11 +333,14 @@ export default defineConfig({
           silenceDeprecations: ["legacy-js-api"],
           // https://vitejs.dev/config/shared-options#css-preprocessoroptions
           api: 'modern-compiler',
-          additionalData: `@import "@/styles/scss/main.scss";`,
+          //api: 'legacy',
+          additionalData: `
+            @use 'sass:math';
+            @use 'sass:list';
+            @use '@/styles/scss/global/index.scss';`
         // @import "@/styles/less/main.scss";`,
         //  @import "@/styles/less/main.less";`,
-      },
-   },
-},
-}
-)
+          },
+       },
+    },
+  })

@@ -56,11 +56,14 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .Accordion {
   @apply rounded-10px relative overflow-hidden;
-  transition: height $SEC ease;
+  transition: height var(--SEC) ease;
   will-change: height;
-  box-shadow: $SHADOW_BASE;
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
   &.-open {
     &::after {
@@ -69,50 +72,50 @@ export default defineComponent({
   }
 
   &::before {
-    @apply bg-hex-42b883 h-[6px] top-[57px] right-[30px] w-[30px] absolute;
-    content: "";
+    @apply h-[6px] top-[57px] right-[30px] w-[30px] absolute content-empty;
+    background-color: var(--COLOR_MAIN);
 
-    @include md(max) {
+
+    @screen lt-tb {
       @apply h-[3px] top-[35px] right-[15px] w-[15px];
     }
   }
 
   &::after {
-    @apply bg-hex-42b883 h-[6px] top-[57px] right-[30px] w-[30px] absolute;
-    content: "";
-    transform: rotate(90deg);
+    @apply bg-hex-42b883 h-[6px] top-[57px] right-[30px] w-[30px] absolute content-empty rotate-90deg;
+    //transform: rotate(90deg);
     transform-origin: center;
-    transition: transform $SEC ease;
+    transition: transform var(--SEC) ease;
 
-    @include md(max) {
+    @screen lt-tb {
       @apply h-3px top-35px right-15px w-15px;
     }
   }
 }
 
 .Accordion__heading {
-  @apply font-normal m-0;
+  @apply m-0;
   font-size: em(16, 16);
 
   &::before {
-    @apply h-24px top-48px left-58px w-26px absolute;
-    content: "";
+    @apply h-24px top-48px left-58px w-26px absolute content-empty;
     background-image: url($PATH + "faq-q.svg");
     background-repeat: no-repeat;
     background-size: 100%;
 
-    @include md(max) {
+    @screen lt-tb {
       @apply h-22px top-24px left-20px w-23px;
     }
   }
 }
 
 .Accordion__headingButton {
-  @apply bg-transparent border-none cursor-pointer border-0 text-left w-full py-[44px] px-[120px] text-hex-35495e block dark: text-white;
+  @apply bg-transparent border-none cursor-pointer border-0 text-left w-full py-[44px] px-[120px] block dark:text-white;
   font-size: em(18, 16);
+  color: var(--COLOR_BASE);
   line-height: 1.8;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply py-20px pr-40px pl-60px;
     font-size: em(15, 16);
   }
@@ -126,15 +129,15 @@ export default defineComponent({
   }
 
   &::before {
-    @apply border-solid border-2 border-hex-42b883 rounded-10px opacity-0 top-0 right-0 bottom-0 left-0 absolute pointer-events-none;
-    content: "";
+    @apply rounded-10px opacity-0 top-0 right-0 bottom-0 left-0 absolute pointer-events-none content-empty;
+    border: 2px solid var(--COLOR_MAIN);
   }
 }
 
 .Accordion__content {
   @apply px-120px pt-20px pb-40px;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply py-20px pr-20px pl-60px;
   }
 }

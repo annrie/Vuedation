@@ -1,8 +1,0 @@
-import './less/main.less'
-// import 'virtual:windi-devtools'
-// import 'virtual:windi-base.css'
-// import 'virtual:windi-components.css'
-import './my-style.scss'
-// import '@/styles/scss/main.scss'
-// import 'virtual:windi-utilities.css'
-// import 'unocss'

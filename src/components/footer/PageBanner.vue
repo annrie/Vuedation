@@ -27,10 +27,13 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .PageBanner {
   @apply mt-120px;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-60px;
   }
 }
@@ -42,11 +45,11 @@ export default defineComponent({
 .PageBanner__list {
   @apply my-0 -mx-13px p-0;
 
-  @include md(min) {
+  @screen md {
     @apply flex justify-center;
   }
 
-  @include md(max) {
+  @screen lt-tb {
     @apply m-0;
   }
 }
@@ -54,12 +57,12 @@ export default defineComponent({
 .PageBanner__item {
   @apply list-none py-0 px-13px w-1/2 box-border;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply text-center w-full p-0;
   }
 
   &:not(:last-child) {
-    @include md(max) {
+    @screen lt-tb {
       @apply mb-15px;
     }
   }
@@ -68,18 +71,15 @@ export default defineComponent({
 
   > a {
     @apply border-solid border-4 border-emerald-200 rounded-10px transition-shadow ease-linear duration-150 overflow-hidden block box-border dark: border-dark-200 ;
-    box-shadow: $SHADOW_BASE;
+    box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
-    @include md(max) {
+    @screen lt-tb {
       @apply max-w-340px inline-block align-top;
-      // max-width: 340px;
-      // display: inline-block;
-      // vertical-align: top;
     }
 
     &:hover {
       @apply dark: bg-light-50 ;
-      box-shadow: $SHADOW_HOVER;
+      box-shadow: 3px 3px 24px rgba(#d9e6bd, 0.9);
     }
   }
 }

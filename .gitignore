@@ -1,15 +1,16 @@
+.DS_Store
 # dependencies
 node_modules
+*.local
 
 # logs
 npm-debug.log
 
-# Nuxt build
-.nuxt
-
-# Nuxt generate
+# Vue generate
 dist
 generated:production
+.vite-ssg-dist
+.vite-ssg-temp
 
 # Yarn2
 .yarn/cache
@@ -30,6 +31,12 @@ generated:production
 *.afphoto
 
 tmp
+dist
+dist-ssr
+node_modules
+.idea/
+*.log
+cypress/downloads
 
 .env
 .vercel

@@ -1,0 +1,5 @@
+@use "mixin" as *;
+
+._VisuallyHidden {
+  @include visually-hidden;
+}
