@@ -61,118 +61,95 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .News__tabPanel {
   @apply mt-30px;
 
-  // margin-top: 30px;
   @include md(max) {
     @apply mt-15px;
-    // margin-top: 15px;
-  }
+   }
 }
 
 .News__list {
   @apply m-0 p-0 list-none;
-  // margin: 0;
-  // padding: 0;
-  // list-style-type: none;
 }
 
 .News__item {
   @apply py-26px px-30px text-base bg-white;
-  // padding: 26px 30px;
-  // font-size: 1rem;
-  // background-color: #fff;
-  box-shadow: $SHADOW_BASE;
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
-  @include md(min) {
+  @screen md {
     @apply flex align-baseline;
-    // display: flex;
-    // align-items: baseline;
   }
 
-  @include md(max) {
+  @screen lt-tb {
     @apply pt-16px pb-20px px-20px;
-    // padding: 16px 20px 20px;
   }
 
   &:not(:first-child) {
     @apply mt-10px;
 
-    // margin-top: 10px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-20px;
-      // margin-top: 20px;
     }
   }
 }
 
 .News__itemInfo {
-  @include md(min) {
+  @screen md {
     @apply flex items-center;
-    // display: flex;
-    // align-items: center;
   }
 
-  @include md(max) {
+  @screen lt-tb {
     @apply block;
-    // display: block;
   }
 }
 
 .News__itemDate {
-  @apply text-hex-42b883 whitespace-nowrap font-normal;
-  // color: $COLOR_MAIN;
-  // font-weight: $FONT_WEIGHT_BASE_BOLD;
+  @apply whitespace-nowrap;
+  color: var(--COLOR_MAIN);
+  font-weight: var(--FONT_WEIGHT_BASE_BOLD);
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(14, 16);
   }
 }
 
 .News__itemCategory {
-  @apply min-w-70px py-2px px-5px text-center whitespace-nowrap text-white bg-hex-42b883 font-500;
-  // min-width: 70px;
-  // padding: 2px 0;
+  @apply min-w-70px py-2px px-5px text-center whitespace-nowrap text-white font-500;
   font-size: em(14, 16);
-  // font-weight: $FONT_WEIGHT_BASE_BOLD;
+  font-weight: var(--FONT_WEIGHT_BASE_BOLD);
+  background-color:var(--COLOR_MAIN);
 
-  // text-align: center;
-  // color: #fff;
-  // background-color: $COLOR_MAIN;
-  @include md(max) {
+  @screen lt-tb {
     @apply inline-block;
-    // display: inline-block;
     font-size: em(12, 16);
   }
 
   &:not(:first-child) {
     @apply ml-20px;
 
-    // margin-left: 20px;
-    @include md(max) {
+    @screen lt-tb {
       @apply ml-15px;
-      // margin-left: 15px;
     }
   }
 }
 
 .News__itemTitle {
-  @apply text-hex-42b883 no-underline;
+  @apply no-underline;
   font-size: em(15, 16);
-  font-weight: $FONT_WEIGHT_BASE_BOLD;
+  font-weight: var(--FONT_WEIGHT_BASE_BOLD);
   line-height: 1.73;
-  // color: $COLOR_BASE;
-  // text-decoration: none;
+  color: var(--COLOR_BASE);
 
   &:hover {
     @apply underline;
-    // text-decoration: underline;
   }
 
-  @include md(max) {
+  @screen lt-tb {
     @apply block;
-    // display: block;
     font-size: em(14, 16);
     line-height: 1.64;
   }
@@ -180,10 +157,8 @@ export default defineComponent({
   &:not(:first-child) {
     @apply ml-20px;
 
-    // margin-left: 20px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-12px mb-0 mx-0;
-      // margin: 12px 0 0;
     }
   }
 }

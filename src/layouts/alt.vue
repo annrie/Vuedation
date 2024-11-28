@@ -26,14 +26,15 @@ const isTop = computed(() => router.currentRoute.value.name === Page.TOP);
 </template>
 
 <style lang="scss">
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .App {
   // @apply container mx-auto pt-80px;
   @apply bg-light-100 pt-80px;
-  // padding-top: 80px;
 
   @screen lt-md {
     @apply pt-70px;
-    // padding-top: 70px;
   }
 }
 .main {
@@ -42,7 +43,5 @@ const isTop = computed(() => router.currentRoute.value.name === Page.TOP);
 
 .dg.ac {
   @apply right-1/4 z-1;
-  // z-index: 1;
-  // right: 25%;
 }
 </style>

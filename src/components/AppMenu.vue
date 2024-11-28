@@ -46,37 +46,23 @@ const pages = ref(menuRoutes);
 </template>
 
 <style lang="scss" scoped>
-// '!' use from https: //bytemeta.vip/repo/windicss/vite-plugin-windicss/issues/218
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .AppMenu {
   @apply flex top-0 right-0 bottom-0 left-0 z-2 fixed items-center invisible;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // z-index: 2;
-  // display: flex;
-  // align-items: center;
-  // visibility: hidden;
 
   .AppHeader.-open & {
     @apply visible;
-    // visibility: visible;
   }
 }
 
 .AppMenu__inner {
   @apply z-2 relative;
-  // position: relative;
-  // z-index: 2;
-  padding-left: vw(700, $XL);
+  padding-left: vw(700, 1280);
 
-  @include md(max) {
+  @screen lt-tb {
     @apply h-full w-full px-0 pt-278px pb-0 box-border;
-    // width: 100%;
-    // height: 100%;
-    // padding: 278px 0 0;
-    // box-sizing: border-box;
   }
 }
 
@@ -84,33 +70,22 @@ const pages = ref(menuRoutes);
 }
 
 .AppMenu__item {
-  @include md(max) {
+  @screen lt-tb {
     @apply text-center;
-    // text-align: center;
   }
 }
 
 .AppMenu__logo {
   @apply flex rounded-[50%] top-1/2 absolute justify-center;
-  // position: absolute;
-  // top: 50%;
   left: vw(170, $XL);
   transform: translateY(-50%);
   width: vw(420, $XL);
   height: vw(420, $XL);
 
-  // display: flex;
-  // justify-content: center;
   background-color: #fff;
 
-  // border-radius: 50%;
-  @include md(max) {
-    @apply h-158px top-100px left-1/2 w-158px;
-    // top: 100px;
-    // left: 50%;
-    transform: translateX(-50%);
-    // width: 158px;
-    // height: 158px;
+  @screen lt-tb {
+    @apply h-158px top-100px left-1/2 w-158px translate-x--50%;
   }
 }
 
@@ -118,10 +93,8 @@ const pages = ref(menuRoutes);
   width: vw(322, $XL);
   padding-top: vw(106, $XL);
 
-  @include md(max) {
+  @screen lt-tb {
     @apply pt-38px w-120px;
-    // width: 120px;
-    // padding-top: 38px;
   }
 }
 </style>

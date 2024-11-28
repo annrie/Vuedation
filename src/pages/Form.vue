@@ -154,6 +154,9 @@
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .form {
   @apply mx-auto mt-20px mb-0 w-full;
 }

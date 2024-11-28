@@ -16,20 +16,18 @@ const thisYear = new Date().getFullYear();
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .AppFooter {
-  @apply bg-hex-35495e mt-120px text-center text-white py-21px px-0;
-  // margin-top: 120px;
-  // padding: 21px 0;
-  // font-weight: $FONT_WEIGHT_BASE_BOLD;
+  @apply mt-120px text-center text-white py-21px px-0;
+  font-weight: var(--FONT_WEIGHT_BASE_BOLD);
   font-size: em(12, 16);
+  background-color:var(--COLOR_BASE);
   line-height: 1.5;
 
-  // text-align: center;
-  // color: #fff;
-  // background-color: #35495e;
   @screen lt-md {
     @apply mt-60px;
-    // margin-top: 60px;
     font-size: em(10, 16);
   }
 }

@@ -1,5 +1,5 @@
-const fs = require("fs");
-const consola = require("consola");
+import fs from "fs";
+import consola from "consola";
 
 (function () {
   // Create an .env file if one doesn't exist

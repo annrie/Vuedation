@@ -2,7 +2,7 @@ import {createStore} from 'vuex'
 // import {layout} from '@/middleware/layout/fetch'
 import {trackRouter} from 'vue-gtag-next'
 // import type {Page} from '@/router'
-import {ModalId, DispatchType} from '@/store/app.config'
+import {ModalId, DispatchType} from '~/store/app.config'
 // import * as Cookies from 'js-cookie'
 
 // const debug = import.meta.env.MODE !== 'production'

@@ -1,16 +1,23 @@
 <script lang="ts" setup>
-import {withDefaults} from 'vue';
+//import {withDefaults} from 'vue';
 import store from "@/store";
 import { DispatchType } from "@/store/app.config";
 
-const props=withDefaults(
-  defineProps<{
+interface Props {
     href: string; // デフォルトでrequire:true
-  }>(),
-  {
-    href: "/", // デフォルト値を設定
-  },
-);
+};
+
+const props = defineProps<Props>();
+
+//const props=withDefaults(
+//  defineProps<{
+ //   href: string; // デフォルトでrequire:true
+ // }>(),
+ // {
+ //   href: "/", // デフォルト値を設定
+ // },
+//);
+
 const onClickMenuClose = () => {
   store.dispatch(DispatchType.MENU_CLOSE);
 };
@@ -25,17 +32,17 @@ const onClickMenuClose = () => {
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .AppMenu__link {
-  @apply font-semibold text-white inline-block align-top no-underline;
-  // display: inline-block;
-  // vertical-align: top;
-  font-family: $FONT_EN;
-  // font-weight: $FONT_WEIGHT_EN_BOLD;
+  @apply text-white inline-block align-top no-underline;
+  font-family: var(--FONT_EN);
+  font-weight: var(--FONT_WEIGHT_EN_BOLD);
   font-size: em(63, 16);
   line-height: 1.4;
-  // color: #fff;
-  // text-decoration: none;
-  @include md(max) {
+  @screen lt-tb {
+    @apply text-2.50em;
     font-size: em(40, 16);
   }
 }

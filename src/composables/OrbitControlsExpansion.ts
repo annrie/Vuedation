@@ -1,6 +1,6 @@
 import {Quaternion, Spherical, Vector2, Vector3} from 'three'
 import {PerspectiveCamera} from 'three/src/cameras/PerspectiveCamera'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 class OrbitControlsExpansion extends OrbitControls {
   // this method is exposed, but perhaps it would be better if we can make it private...

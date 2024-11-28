@@ -55,54 +55,46 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .News__tabs {
   @apply mt-30px;
 
-  // margin-top: 30px;
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-15px;
-    // margin-top: 15px;
   }
 }
 
 .News__tabList {
   @apply flex justify-between;
-  // display: flex;
-  // justify-content: space-between;
 }
 
 .News__tab {
-  @apply py-24px px-0 bg-emerald-800 rounded-none border-0 rounded-10px cursor-pointer;
+  @apply py-24px px-0 rounded-none border-0 border-none rounded-10px cursor-pointer;
   width: calc((100% - 70px) / 3);
-  // padding: 24px 0;
-  font-family: $FONT_EN;
+  font-family:var(--FONT_EN);
   font-size: em(20, 16);
   line-height: 1.6;
-  color: $COLOR_MAIN;
-  // background-color: #fbfdf5;
-  // border: 0 none;
-  // border-radius: 10px;
-  box-shadow: $SHADOW_BASE;
-  // cursor: pointer;
-  transition: box-shadow $SEC ease;
+  color: var(--COLOR_MAIN);
+  background-color: #fbfdf5;
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
+  transition: box-shadow var(--SEC) ease;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply py-8px px-0 rounded-5px;
     width: calc((100% - 35px) / 3);
-    // padding: 8px 0;
     font-size: em(15, 16);
-    // border-radius: 5px;
-    box-shadow: $SHADOW_BASE;
+    box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
   }
 
   &:hover {
-    box-shadow: $SHADOW_HOVER;
+    box-shadow: 3px 3px 24px rgba(#d9e6bd, 0.9);
   }
 
   &.-active {
-    @apply text-white bg-emerald-800;
-    // color: #fff;
-    // background-color: $COLOR_MAIN;
+    @apply text-white;
+    background-color: var(--COLOR_MAIN);
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import axios from "axios";
-import { Tabs, Tab, TabPanels, TabPanel } from "vue3-tabs";
+import { TabPanel, TabPanels, Tab, Tabs } from "vue3-tabs";
 import {
   getCategoryNewsData,
   getDataDateTime,
@@ -106,16 +106,21 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .News {
   @apply mx-auto mt-98px mb-0 max-w-1000px py-0 px-20px;
+
   @screen lt-md {
     @apply mx-0 mt-30px mb-0;
   }
 }
 
 .News__heading {
-  @apply m-0 text-hex-42b883;
-  font-family: $FONT_EN;
+  @apply m-0 font-xl;
+  font-family: var(--FONT_EN);
+  color: var(--COLOR_MAIN);
   font-size: em(60, 16);
 
   @screen lt-md {
@@ -128,8 +133,7 @@ export default defineComponent({
 }
 
 .tabs {
-  @apply py-0 px-6px;
-  display: block !important;
+  @apply py-0 px-6px important-block;
 }
 
 .tab-panels {
@@ -137,10 +141,10 @@ export default defineComponent({
 }
 
 //.tab-panel {
- // @apply bg-light-50 dark:bg-gray-200;
-  //  li {
-  // @apply bg-white dark:bg-gray-100;
-  //  }
+// @apply bg-light-50 dark:bg-gray-200;
+//  li {
+//     @apply bg-white dark:bg-gray-100;
+//    }
 //}
 
 .vue3-tabs-tablist {
@@ -148,27 +152,29 @@ export default defineComponent({
 }
 
 .vue3-tabs-tab {
-  @apply border-none cursor-pointer bg-gray-100 border-0 rounded-10px text-center py-14px px-0 text-hex-42b883;
+  @apply border-none cursor-pointer bg-gray-100 border-0 rounded-10px text-center py-14px px-0;
   width: calc((100% - 70px) / 3);
-  font-family: $FONT_EN;
+  font-family: var(--FONT_EN);
   font-size: em(20, 16);
+  color: var(--COLOR_MAIN);
   line-height: 1.6;
-  transition: box-shadow $SEC ease;
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
+  transition: box-shadow 0.3s ease;
 
   @screen lt-md {
     @apply rounded-5px py-8px px-0;
     width: calc((100% - 35px) / 3);
     font-size: em(15, 16);
-    box-shadow: $SHADOW_BASE;
+    box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
   }
 
   &:hover {
-    box-shadow: $SHADOW_HOVER;
+    box-shadow: 3px 3px 24px rgba(#d9e6bd, 0.9);
   }
 
   &.active {
     @apply bg-main text-white;
-    background-color: $COLOR_MAIN;
+    background-color: var(--COLOR_MAIN);
   }
 }
 
@@ -177,8 +183,9 @@ export default defineComponent({
   }
 
 .vue3-tabs-item {
-  @apply text-base py-[26px] px-[30px]  bg-light-50 dark:bg-gray-200;
-  box-shadow: $SHADOW_BASE;
+  @apply text-base py-[26px] px-[30px]  bg-gray-200 dark:bg-gray-400;
+  box-shadow:3px 3px 6px rgba(#d9e6bd, 0.63);
+  //box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
   @screen md {
     @apply flex items-baseline;
@@ -208,7 +215,8 @@ export default defineComponent({
 
 .vue3-tabs-date {
   @apply font-bold text-main text-black;
-  @screen lt-md {
+
+  @screen lt-tb {
     font-size: em(14, 16);
   }
 }
@@ -216,14 +224,16 @@ export default defineComponent({
 .vue3-tabs-category {
   @apply bg-main font-bold text-center text-white min-w-70px py-2px px-0;
   font-size: em(14, 16);
-  background-color: $COLOR_MAIN;
-  @screen lt-md {
+  background-color: var(--COLOR_MAIN);
+
+  @screen lt-tb {
     @apply inline-block;
     font-size: em(12, 16);
   }
 
   &:not(:first-child) {
     @apply ml-20px;
+
     @screen lt-md {
       @apply ml-15px;
     }
@@ -231,18 +241,25 @@ export default defineComponent({
 }
 
 .vue3-tabs-title {
-  @apply font-bold dark: (link: text-light-200 visited:text-pink-300) visited: text-gray-400;
-  link: text-gray-700;
-  color: $COLOR_BASE;
+//  @apply font-bold dark:(link:text-light-100 visited:text-pink-100) visited:text-gray-100;
+  color: var(--COLOR_BASE);
+  font-size: em(15, 16);
+  font-weight: 700;
   line-height: 1.73;
 
-  @screen lt-md {
-    @apply text-sm block;
+  //link:text-gray-400;
+  color: var(--COLOR_BASE);
+  line-height: 1.73;
+
+  @screen lt-tb {
+    @apply block;
+    font-size: em(15, 16);
     line-height: 1.64;
   }
 
   &:not(:first-child) {
     @apply ml-20px;
+
     @screen lt-md {
       @apply mx-0 mt-12px mb-0;
     }

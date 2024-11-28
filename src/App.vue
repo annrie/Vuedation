@@ -3,9 +3,7 @@
     <template v-if="ClientReloadPrompt">
       <ClientReloadPrompt />
     </template>
-    <!-- <Suspense> -->
     <router-view />
-    <!-- </Suspense> -->
     <notifications />
   </component>
 </template>
@@ -19,8 +17,8 @@ import { useRoute } from "vue-router";
 import ReloadPWA from "./components/ReloadPWA.vue";
 
 // Import layouts.
-import Default from "@/layouts/default.vue";
-import Alt from "@/layouts/alt.vue";
+import Default from "~/layouts/default.vue";
+import Alt from "~/layouts/alt.vue";
 
 import { notify } from "@kyvg/vue3-notification";
 // useHead({

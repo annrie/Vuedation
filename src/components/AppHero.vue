@@ -480,12 +480,12 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .PageHero {
   @apply z-0 relative overflow-hidden;
-  // position: relative;
-  // z-index: 0;
   height: calc(100vh - 80px);
-  // overflow: hidden;
 
   @screen lt-md {
     height: calc(100vh - 70px);
@@ -497,67 +497,47 @@ export default defineComponent({
  }
 
 .PageHero__control {
-  @apply border-none cursor-pointer font-semibold p-0 bottom-30px text-hex-42b883 z-2 absolute;
-  // position: absolute;
-  // bottom: 30px;
-  // z-index: 2;
-  // padding: 0 0;
-  font-family: $FONT_EN;
+  @apply border-none border-0 cursor-pointer p-0 mx--5px bottom-30px z-2 absolute font-xl;
+  font-family: var(--FONT_EN);
   font-size: em(28, 16);
-  // font-weight: 600;
+  font-weight: 600;
   line-height: 1.6;
-  color: $COLOR_MAIN;
+  color: var(--COLOR_MAIN);
   background-color: rgba(#fff, 0.9);
-  // border: 0 none;
-  box-shadow: $SHADOW_BASE;
-  // transition: box-shadow 0.3s ease;
-  transition: box-shadow $SEC ease;
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
+  transition: box-shadow var(--SEC) ease;
 
-  // cursor: pointer;
   @screen lt-md {
     font-size: em(18, 16);
   }
 
   svg {
     @apply h-20px top-1/2 w-12px absolute;
-    // position: absolute;
-    // top: 50%;
     transform: translateY(-50%);
-    // width: 12px;
-    // height: 20px;
-    fill: $COLOR_MAIN;
-    transition: transform 0.3s ease;
-    // transition: transform $SEC ease;
+    fill: var(--COLOR_MAIN);
+    transition: transform var(--SEC) ease;
 
     @screen lt-md {
       @apply h-16px w-8px;
-      // width: 8px;
-      // height: 16px;
     }
   }
 
   &:hover {
-    box-shadow: $SHADOW_HOVER;
+    box-shadow: 3px 3px 24px rgba(#d9e6bd, 0.9);
   }
 
   &.-prev {
-    @apply rounded-t-none rounded-l-none rounded-r-10px rounded-b-10px py-10px pr-20px pl-40px -left-2;
+    @apply rounded-t-none rounded-l-none rounded-r-10px rounded-b-10px py-10px pr-20px pl-40px left-0;
 
-    // left: 0;
-    // padding: 10px 20px 10px 40px;
-    // border-radius: 0 10px 10px 0;
     @screen lt-md {
       @apply py-4px pr-14px pl-20px;
-      // padding: 4px 14px 4px 20px;
     }
 
     svg {
       @apply left-20px;
 
-      // left: 20px;
       @screen lt-md {
         @apply left-6px;
-        // left: 6px;
       }
     }
 
@@ -571,23 +551,17 @@ export default defineComponent({
   }
 
   &.-next {
-    @apply rounded-r-none rounded-t-10px rounded-l-10px py-10px pr-40px pl-20px -right-2;
+    @apply rounded-r-none rounded-t-10px rounded-l-10px py-10px pr-40px pl-20px -right-2 right-0;
 
-    // right: 0;
-    // padding: 10px 40px 10px 20px;
-    // border-radius: 10px 0 0 10px;
     @screen lt-md {
       @apply py-4px pr-20px pl-14px;
-      // padding: 4px 20px 4px 14px;
     }
 
     svg {
       @apply right-20px;
 
-      // right: 20px;
       @screen lt-md {
         @apply right-6px;
-        // right: 6px;
       }
     }
 
@@ -602,7 +576,7 @@ export default defineComponent({
 }
 
 .PageHero__bg {
-  @apply top-0 right-0 bottom-0 left-0 z-1 absolute;
+  @apply top-0 right-0 bottom-0 left-0 z-0 absolute;
  }
 
 .PageHero__canvas {
