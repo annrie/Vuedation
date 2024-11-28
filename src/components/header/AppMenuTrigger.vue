@@ -23,114 +23,69 @@ const onClickMenuToggle = () => {
 </template>
 
 <style lang="scss" scoped>
-.AppHeader__trigger {
-  @apply h-78px p-0 top-0 right-28px w-94px z-10 fixed;
-  // position: fixed;
-  // top: 0;
-  // right: 28px;
-  // z-index: 10;
-  // width: 94px;
-  // height: 78px;
-  // padding: 0;
-  background-color: transparent;
-  border: 0 none;
-  cursor: pointer;
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
 
-  @screen lt-md {
+.AppHeader__trigger {
+  @apply h-78px p-0 top-0 right-28px w-94px z-10 fixed bg-transparent border-none border-0 cursor-pointer;
+
+  @screen lt-tb {
     @apply h-60px right-0 w-72px;
-    // right: 0;
-    // width: 72px;
-    // height: 60px;
   }
 
   &:focus {
-    outline: 2px solid $COLOR_MAIN;
+    outline: 2px solid var(--COLOR_MAIN);
     outline-offset: -2px;
   }
 }
 
 .AppHeader__triggerBar {
-  @apply rounded-2px h-3px absolute;
+  @apply rounded-2px h-3px absolute left-50% bg-white;
 
-  // position: absolute;
-  left: 50%;
-
-  // height: 3px;
-  // border-radius: 2px;
-  background-color: #fff;
-
-  @screen lt-md {
+  @screen lt-tb {
     @apply h-2px;
-    // height: 2px;
   }
 
   &.-top {
-    @apply top-19px w-32px;
+    @apply top-19px w-32px translate-x--50%;
 
-    // top: 19px;
-    transform: translateX(-50%);
-
-    // width: 32px;
-    @screen lt-md {
+    @screen lt-tb {
       @apply top-19px w-20px;
-      //   top: 19px;
-      //   width: 20px;
     }
 
     .AppHeader.-open & {
-      @apply top-32px;
+      @apply top-32px translate-x--50% rotate-45deg;
 
-      // top: 32px;
-      transform: translateX(-50%) rotate(45deg);
-
-      @screen lt-md {
+      @screen lt-tb {
         @apply top-27px;
-        // top: 27px;
       }
     }
   }
 
   &.-center {
-    @apply top-32px w-20px;
+    @apply top-32px w-20px translate-x--50%;
 
-    // top: 32px;
-    transform: translateX(-50%);
-
-    // width: 20px;
-    @screen lt-md {
+    @screen lt-tb {
       @apply top-27px w-14px;
-      // top: 27px;
-      // width: 14px;
     }
 
     .AppHeader.-open & {
       @apply opacity-0;
-      // opacity: 0;
     }
   }
 
   &.-bottom {
-    @apply top-45px w-32px;
+    @apply top-45px w-32px translate-x--50%;
 
-    // top: 45px;
-    transform: translateX(-50%);
-
-    // width: 32px;
-    @screen lt-md {
+    @screen lt-tb {
       @apply top-35px w-20px;
-      // top: 35px;
-      // width: 20px;
     }
 
     .AppHeader.-open & {
-      @apply top-32px;
-
-      // top: 32px;
-      transform: translateX(-50%) rotate(-45deg);
+      @apply top-32px translate-x--50% rotate--45deg;
 
       @screen lt-md {
         @apply top-27px;
-        // top: 27px;
       }
     }
   }

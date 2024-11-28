@@ -24,9 +24,9 @@
   "editor.stickyScroll.enabled": true,
   "editor.hover.sticky": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
-    "source.organizeImports": false
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -255,5 +255,6 @@
   "vue.features.codeActions.enable": false,
   "scss.validate": false,
 	"css.validate": false,
-	"vue.codeActions.enabled": true
+  "vue.codeActions.enabled": true,
+  "workbench.editor.tabActionLocation": "left"
 }

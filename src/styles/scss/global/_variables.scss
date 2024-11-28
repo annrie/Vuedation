@@ -1,0 +1,82 @@
+:root {
+  font-family: 'Noto Sans Japanese', 'Segoe UI', Oxygen, Ubuntu, Cantarell,
+    'Open Sans', sans-serif;
+  /* This will generate fallbacks for local versions of Helvetica and Arial, adjusted to match Roboto's metrics. */
+  font-family: Roboto, Helvetica, Arial;
+  /* If you provide a generic family (like serif or sans-serif), we will use a system font from that family. */
+  // font-family: Merriweater, serif;
+  // f--color: #243746;
+  // f--color-primary: #d8002d;
+  // f--color-secondary: #0e2233;
+  // f--bg: #fff;
+  // --bg: #f3f5f4;
+  // f--bg-secondary: #fff;
+  // f--border-color: #ddd;
+  --FONT_FAMILY_BASE:'Hiragino Sans', 'メイリオ', Meiryo, sans-serif;
+  --FONT_EN: 'Source Sans Pro', sans-serif;
+  --FONT_WEIGHT_BASE_NORMAL: 400;
+  --FONT_WEIGHT_BASE_DEMIBOLD: 600;
+  --FONT_WEIGHT_BASE_BOLD: 700;
+  --FONT_WEIGHT_EN_NORMAL: 400;
+  --FONT_WEIGHT_EN_BOLD: 600;
+  --COLOR_MAIN: #42b883;
+  --COLOR_BASE: #35495e;
+  --SHADOW_BASE: 3px 3px 6px rgba(#d9e6bd, 0.63);
+  --SHADOW_HOVER: 3px 3px 24px rgba(#d9e6bd, 0.9);
+  --PATH: '/assets/images/';
+  --SEC: 0.3s;
+}
+
+
+$PATH: '@/assets/images/';
+$SHADOW_BASE: 3px 3px 6px rgba(#d9e6bd, 0.63);
+$SHADOW_HOVER: 3px 3px 24px rgba(#d9e6bd, 0.9);
+
+// Breakpoints
+$XL: 1366;
+$LG: 1024;
+$MD: 768;
+$SM: 576;
+$XS: 375;
+
+// ink: text-gray-700 visited: text-gray-400
+
+// dummy fonts
+ @font-face {
+     font-family: "Redacted";
+     src: url("@/assets/redacted-font/fonts/web/redacted-regular.eot");
+     src: url("@/assets/redacted-font/fonts/web/redacted-regular.woff2") format("woff2"),
+          url("@/assets/redacted-font/fonts/web/redacted-regular.woff") format("woff"),
+          url("@/assets/redacted-font/fonts/web/redacted-regular.ttf") format("opentype"),
+          url("@/assets/redacted-font/fonts/web/redacted-regular.svg#filename") format("svg");
+ }
+
+ .prototype {
+     font-family: "Redacted";
+       // color: #999;
+ }
+
+ .prototype-script {
+     font-family: "Redacted Script";
+     // color: #999;
+ }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Fira+Code&family=Fira+Mono:wght@400;700&family=Lobster&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* layer: default */
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
+.font-lobster {
+  font-family: "Lobster";
+}
+.font-mono {
+  font-family: "Fira Code", "Fira Mono", "DM Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.font-sans {
+  font-family: "Noto Sans JP", "Roboto", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}

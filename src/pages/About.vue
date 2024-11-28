@@ -2,20 +2,15 @@
 import { defineComponent } from "vue";
 import PageModal from "@/components/pages/PageModal.vue";
 import { AppData } from "@/store/app.data";
-import SwiperCore, { Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation } from 'swiper/modules';
 import { DispatchType } from "@/store/app.config";
 import store from "@/store";
-// import "swiper/swiper.scss";
-import "swiper/css/bundle";
-// swiper core styles
-import "swiper/css";
 
-// modules styles
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-SwiperCore.use([Navigation]);
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default defineComponent({
   name: "About",
@@ -33,13 +28,14 @@ export default defineComponent({
       swiperCtrl: { realIndex: 0 },
       nowCarouselNum: 0,
       maxCarouselNum: AppData.chapterDetailDataList2.length,
+      modules: [Navigation]
     };
   },
   methods: {
     selectChapter(chapterIndex: number, detailIndex: number) {
       this.selectChapterIndexList[chapterIndex] = detailIndex;
     },
-    onSwiper(e: SwiperCore) {
+    onSwiper(e: any) {
       console.log(e);
       this.swiperCtrl = e;
     },
@@ -63,9 +59,9 @@ export default defineComponent({
 </script>
 
 <template>
-<AmBreadcrumbs
+  <AmBreadcrumbs
     :showCurrentCrumb="true"
-/>
+  />
   <section class="About">
     <h2 class="About__heading">
       <span> <em class="About__headingEn">Vue.js 3.x</em> を、 </span>
@@ -176,68 +172,52 @@ export default defineComponent({
       </section>
     </section>
   </section>
+
   <Swiper
+    :modules="modules"
     :slides-per-view="2"
     :centered-slides="true"
     :space-between="10"
-    :navigation="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }"
+    :navigation="true"
     @swiper="onSwiper"
-    @slide-change="onSlideChange"
+    @slideChange="onSlideChange"
   >
     <SwiperSlide v-for="(data, index) in carouselAboutData" :key="index">
       <button type="button" class="swiper-slide-button" @click="onOpenModal(index)">
         <img class="img" :src="data.src" :alt="data.alt" :data-id="data.id" />
       </button>
     </SwiperSlide>
-    <div class="swiper-controller">
-      <button
-        v-show="nowCarouselNum !== 0"
-        type="button"
-        class="swiper-button-prev"
-        @click="onClickCarouselPrev"
-      >
-        <span class="_VisuallyHidden">前のスライドへ</span>
-      </button>
-      <button
-        v-show="nowCarouselNum !== maxCarouselNum"
-        type="button"
-        class="swiper-button-next"
-        @click="onClickCarouselNext"
-      >
-        <span class="_VisuallyHidden">次のスライドへ</span>
-      </button>
-    </div>
   </Swiper>
   <PageModal :carouselData="carouselAboutData" />
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .Button {
-  @apply bg-hex-42b883 rounded-10px text-center text-white block no-underline;
+  @apply rounded-10px text-center text-white block no-underline;
   padding: em(13, 15) em(20, 15);
   font-size: em(15, 18);
   line-height: 1.6;
-  box-shadow: $SHADOW_BASE;
-  transition: background-color $SEC ease, color $SEC ease;
+  background-color: var(--COLOR_MAIN);
+  box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
+  transition: background-color var(--SEC) ease, color var(--SEC) ease;
 
-  @include md(max) {
+  @screen lt-tb {
     padding: em(11, 12) em(4, 12);
     font-size: em(12, 16);
     line-height: 1.5;
   }
 
   &:hover {
-    @apply bg-white text-hex-42b883;
-    // color: $COLOR_MAIN;
-    // background-color: #fff;
+    @apply bg-white;
+    color: var(--COLOR_MAIN);
   }
 }
 
 .About {
   @apply mx-auto mt-20px mb-0 max-w-1000px grid;
-  // max-width: 1000px;
-  // margin: 20px auto 0;
-  // display: grid;
   grid-template-rows: auto auto auto auto;
   grid-template-columns: 55% 45%;
   grid-template-areas:
@@ -246,12 +226,9 @@ export default defineComponent({
     "detail2   image"
     "link      image";
 
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-30px py-0 px-20px grid-cols-[100%];
-    // margin-top: 30px;
-    // padding: 0 20px;
     grid-template-rows: auto auto auto auto auto;
-    // grid-template-columns: 100%;
     grid-template-areas:
       "heading"
       "detail1"
@@ -263,53 +240,44 @@ export default defineComponent({
 
 .About__heading {
   @apply m-0;
-  // margin: 0;
   grid-area: heading;
   font-size: em(38, 16);
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(27, 16);
     line-height: 1.2;
   }
 
   span {
     @apply inline-block;
-    // display: inline-block;
   }
 }
 
 .About__headingEn {
-  @apply text-hex-42b883 not-italic;
-  font-family: $FONT_EN;
+  @apply not-italic;
+  font-family: var(--FONT_EN);
   font-size: em(70, 38);
+  color: var(--COLOR_MAIN);
 
-  // font-style: normal;
-  // color: $COLOR_MAIN;
-  @include md(max) {
-    font-size: em(45, 27);
+  @screen lt-tb {
+      font-size: em(45, 27);
   }
 }
 
 .About__book {
   grid-area: image;
 
-  @include md(min) {
+  @screen lt-tb {
     @apply ml-[50px];
-    // margin-left: 50px;
   }
 }
 
 .About__links {
   @apply flex flex-wrap mt-60px justify-between;
-  // margin-top: 60px;
-  // display: flex;
-  // justify-content: space-between;
   grid-area: link;
 
-  // flex-wrap: wrap;
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-[30px];
-    // margin-top: 30px;
   }
 }
 
@@ -317,21 +285,17 @@ export default defineComponent({
   @apply mx-0 mt-0 mb-[15px];
   width: calc((100% - 30px) / 2);
 
-  // margin: 0 0 15px;
-  @include md(max) {
+  @screen lt-tb {
     @apply mx-0 mt-0 mb-[10px];
     width: calc((100% - 15px) / 2);
-    // margin: 0 0 10px;
   }
 }
 
 .AboutDetail {
   @apply mt-[50px];
 
-  // margin-top: 50px;
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-[40px];
-    // margin-top: 40px;
   }
 
   &.-detail1 {
@@ -345,41 +309,32 @@ export default defineComponent({
   .About__heading + & {
     @apply mt-[60px];
 
-    // margin-top: 60px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-30px;
-      // margin-top: 30px;
     }
   }
 }
 
 .AboutDetail__heading {
-  @apply font-semibold m-0 text-hex-42b883;
+  @apply font-semibold m-0;
+  font-size: em(24, 16);
+  color: var(--COLOR_MAIN);
 
-  // margin: 0;
-  // font-size: em(24, 16);
-  // color: $COLOR_MAIN;
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(17, 16);
   }
 }
 
 .AboutDetail__list {
   @apply mx-0 mt-[12px] mb-0 p-0;
-  // margin: 12px 0 0;
-  // padding: 0;
 }
 
 .AboutDetail__listItem {
-  @apply font-semibold list-none pl-4;
+  @apply list-none pl-4;
+  font-weight: var(--FONT_WEIGHT_BASE_DEMIBOLD);
 
-  // list-style-type: none;
-  // padding-left: 1em;
-  // text-indent: -1em;
-  // font-weight: $FONT_WEIGHT_BASE_DEMIBOLD;
   &:not(:first-child) {
     @apply mt-[10px];
-    // margin-top: 10px;
   }
 
    &::before {
@@ -388,65 +343,54 @@ export default defineComponent({
 }
 
 .AboutDetail__text {
-  @apply font-semibold;
   margin: em(12, 15) 0 0;
   font-size: em(15, 16);
-  // font-weight: $FONT_WEIGHT_BASE_DEMIBOLD;
+  font-weight: var(--FONT_WEIGHT_BASE_DEMIBOLD);
   line-height: 1.73;
 }
 
 .Contents {
   @apply mx-auto mt-t-100px mb-[100px] max-w-1000px py-0 px-[20px];
 
-  // max-width: 1000px;
-  // margin: 100px auto 0;
-  // padding: 0 20px;
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-60px;
-    // margin-top: 60px;
   }
 }
 
 .Contents__heading {
   @apply m-0;
-  // margin: 0;
   font-size: em(46, 16);
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(35, 16);
   }
 }
 
 .Contents__headingMain {
-  @apply text-hex-42b883 block;
-  // display: block;
-  font-family: $FONT_EN;
-  // color: $COLOR_MAIN;
+  @apply block;
+   font-family: var(--FONT_EN);
+   color: var(--COLOR_MAIN);
 }
 
 .Contents__headingSub {
   @apply block;
-  // display: block;
   font-size: em(16, 46);
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(14, 35);
   }
 }
 
 .ContentsSection {
   @apply mt-[50px] grid;
-  // margin-top: 50px;
-  // display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 400px 1fr;
   grid-template-areas:
     "heading heading"
     "menu   contents";
 
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-[30px];
-    // margin-top: 30px;
     grid-template-rows: auto auto auto;
     grid-template-columns: auto;
     grid-template-areas:
@@ -458,188 +402,141 @@ export default defineComponent({
 
 .ContentsSection__heading {
   @apply m-0 pb-[8px];
-  // margin: 0;
-  // padding-bottom: 8px;
   grid-area: heading;
   font-size: em(20, 16);
-  border-bottom: 2px solid $COLOR_MAIN;
+  border-bottom: 2px solid var(--COLOR_MAIN);
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(17, 16);
   }
 }
 
 .ContentsSection__headingCategory {
-  @apply font-normal text-hex-42b883;
-  font-family: $FONT_EN;
-  // font-weight: $FONT_WEIGHT_EN_NORMAL;
-  font-size: em(30, 20);
+    font-family: var(--FONT_EN);
+    font-weight: var(--FONT_WEIGHT_EN_NORMAL);
+    font-size: em(30, 20);
+    color: var(--COLOR_MAIN);
 
-  // color: $COLOR_MAIN;
-  @include md(max) {
+  @screen lt-tb {
     @apply mb-[4px] block;
-    // margin-bottom: 4px;
-    // display: block;
     font-size: em(20, 17);
   }
 }
 
 .ContentsSection__headingTitle {
-  @apply font-semibold;
-
-  // font-weight: $FONT_WEIGHT_BASE_DEMIBOLD;
+  font-weight: var(--FONT_WEIGHT_BASE_DEMIBOLD);
   &:not(:first-child) {
-    @include md(min) {
+    @screen lt-tb {
       @apply ml-[12px];
-      // margin-l;eft: 12px;;
     }
   }
 }
 
 .ContentsSection__menu {
   @apply mt-[30px] pr-[40px];
-  // margin-top: 30px;
-  // padding-right: 40px;
   grid-area: menu;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-[20px] pr-0;
-    // margin-top: 20px;
-    // padding-right: 0;
   }
 }
 
 .ContentsSection__list {
   @apply m-0 p-0;
-  // margin: 0;
-  // padding: 0;
 }
 
 .ContentsSection__item {
   @apply list-none;
 
-  // list-style-type: none;
   &:not(:first-child) {
     @apply mt-[30px];
 
-    // margin-top: 30px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-[12px];
-      // margin-top: 12px;
     }
   }
 }
 
 .ContentsSection__itemButton {
-  @apply bg-transparent border-none cursor-pointer border-0 text-left text-hex-35495e relative inline-flex;
-  // position: relative;
+  @apply bg-transparent border-none cursor-pointer border-0 text-left relative inline-flex;
   padding: 0 0 0 em(24, 16);
-  // display: inline-flex;
-  // text-align: left;
-  // color: $COLOR_BASE;
-  // background-color: transparent;
-  // border: 0 none;
-  // cursor: pointer;
-  transition: color $SEC ease;
+  color: var(--COLOR_BASE);
+  transition: color var(--SEC) ease;
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(14, 16);
   }
 
   &:hover {
-    @apply text-hex-42b883;
-    // color: $COLOR_MAIN;
+    color: var(--COLOR_MAIN);
   }
 
   &:focus {
-    outline: 2px solid $COLOR_MAIN;
+    outline: 2px solid var(--COLOR_MAIN);
     outline-offset: 6px;
   }
 
   &::before {
-    @apply bg-no-repeat h-14px opacity-0 top-2px left-0 w-16px absolute;
-    content: "";
-    // position: absolute;
-    // top: 2px;
-    // left: 0;
+    @apply bg-no-repeat h-14px opacity-0 top-2px left-0 w-16px absolute content-empty;
     transform: translateX(-5px) rotate(-90deg);
     transform-origin: center;
-    // width: 16px;
-    // height: 14px;
     background-image: url($PATH + "logo-vue.svg");
-    // background-repeat: no-repeat;
     background-size: 100%;
-    // opacity: 0;
-    transition: opacity $SEC ease, transform $SEC ease;
+    transition: opacity var(--SEC) ease, transform var(--SEC) ease;
 
-    @include md(max) {
+    @screen lt-tb {
       @apply h-[12px] w-[14px];
-      // width: 14px;
-      // height: 12px;
     }
   }
 
   &.-current {
     &::before {
       @apply opacity-100 -rotate-90;
-      // opacity: 1;
-      // transform: rotate(-90deg);
     }
   }
 }
 
 .ContentsSection__itemOrder {
-  @apply flex-shrink-0 text-hex-42b883;
+  @apply flex-shrink-0;
   min-width: em(40, 16);
   margin-right: em(8, 16);
-  // flex-shrink: 0;
-  // color: $COLOR_MAIN;
+  color: var(--COLOR_MAIN);
 }
 
 .ContentsSection__itemTitle {
-  @apply dark: text-emerald-400;
+  @apply dark:text-emerald-400;
 }
 
 .ContentsSection__sub {
   @apply mt-[30px];
-  // margin-top: 30px;
   grid-area: contents;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply mt-[20px] pl-[21px];
-    // margin-top: 20px;
-    // padding-left: 21px;
   }
 }
 
 .ContentsSection__subList {
   @apply flex flex-wrap p-0;
   margin: em(-6, 15) 0 0 -0.6em;
-  // padding: 0;
   font-size: em(15, 16);
 
-  // display: flex;
-  // flex-wrap: wrap;
-  @include md(max) {
+  @screen lt-tb {
     @apply m-0 block;
-    // margin: 0;
-    // display: block;
     font-size: em(12, 16);
   }
 }
 
 .ContentsSection__subItem {
   @apply list-none;
-  // list-style-type: none;
-  margin: em(6, 15) 0 0 0;
+  margin: em(6, 15);
 
-  @include md(max) {
+  @screen lt-tb {
     @apply m-0;
-    // margin: 0;
   }
 
   &:not(:first-child) {
-    @include md(max) {
+    @screen lt-tb {
       margin-top: em(8, 12);
     }
   }
@@ -647,90 +544,59 @@ export default defineComponent({
 
 .ContentsSection__subDescription {
   @apply m-0;
-  // margin: 0;
   font-size: em(15, 16);
   line-height: 1.73;
 
-  @include md(max) {
+  @screen lt-tb {
     font-size: em(12, 16);
   }
 
   .ContentsSection__subList + & {
     @apply mt-[30px];
 
-    // margin-top: 30px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-[12px];
-      // margin-top: 12px;
     }
   }
 }
 
 .swiper-container {
-  @apply mt-[100px] z-0 relative overflow-hidden;
+  @apply mt-100px z-0 relative overflow-hidden;
 
-  // position: relative;
-  // z-index: 0;
-  // overflow: hidden;
-  // margin-top: 100px;
-  @include md(max) {
-    @apply mt-[60px];
-    // margin-top: 60px;
+  @screen lt-tb {
+    @apply mt-60px;
   }
 }
 
 .swiper-wrapper {
   @apply flex m-0 px-0 pt-0 pb-[6px];
-  // margin: 0;
-  // padding: 0 0 6px;
-  // display: flex;
 }
 
 .swiper-slide {
   @apply flex-shrink-0 w-auto;
-  // width: auto;
-  // flex-shrink: 0;
   box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
-  @include md(max) {
-    @apply w-[310px];
-    // width: 310px;
+  @screen lt-tb {
+    @apply w-310px;
   }
 }
 
 .swiper-slide-button {
   @apply bg-transparent border-none cursor-pointer border-0 p-0 block;
-  // padding: 0;
-  // display: block;
-  // background-color: transparent;
-  // border: 0 none;
-  // cursor: pointer;
 
   &:focus {
-    outline: 5px solid $COLOR_MAIN;
-    outline-offset: -5px;
+    @include focus-base;
   }
 }
 
 .swiper-button-prev {
   @apply bg-transparent border-none border-0 h-[40px] p-0 top-1/2 left-[20px] w-[40px] z-2 absolute;
-  // position: absolute;
-  // top: 50%;
-  // left: 20px;
-  // z-index: 2;
-  // width: 40px;
-  // height: 40px;
-  // padding: 0;
-  // background-color: transparent;
-  // border: 0 none;
   background-image: url($PATH + "arrow-slide.svg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-  @include md(max) {
+  @screen lt-tb {
     @apply h-[20px] w-[20px];
-    // width: 20px;
-    // height: 20px;
   }
 
   &::after {
@@ -743,33 +609,19 @@ export default defineComponent({
 
   &.swiper-button-disabled {
     @apply opacity-60 pointer-events-none;
-    // opacity: 0.6;
-    // pointer-events: none;
   }
 }
 
 .swiper-button-next {
-  @apply bg-transparent bg-no-repeat border-none cursor-pointer border-0 h-[40px] p-0 top-1/2 right-[20px] w-[40px] z-2 absolute;
-  // position: absolute;
-  // top: 50%;
-  // right: 20px;
+  @apply bg-transparent bg-no-repeat border-none cursor-pointer border-0 h-[40px] p-0 top-50% right-[20px] w-[40px] z-2 absolute;
   transform: rotate(180deg);
   transform-origin: center;
-  // z-index: 2;
-  // width: 40px;
-  // height: 40px;
-  // padding: 0;
-  // background-color: transparent;
-  // border: 0 none;
   background-image: url($PATH + "arrow-slide.svg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-  // cursor: pointer;
-  @include md(max) {
+  @screen lt-tb {
     @apply h-[20px] w-[20px];
-    // width: 20px;
-    // height: 20px;
   }
 
   &::after {
@@ -781,8 +633,39 @@ export default defineComponent({
 
   &.swiper-button-disabled {
     @apply opacity-0 pointer-events-none;
-    // opacity: 0.6;
-    // pointer-events: none;
   }
+}
+:deep(.swiper-button-prev),
+:deep(.swiper-button-next) {
+  @apply bg-transparent border-none cursor-pointer border-0 h-[40px] p-0 w-[40px] z-20 absolute;
+  background-image: url($PATH + "arrow-slide.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  @screen lt-tb {
+    @apply h-[20px] w-[20px];
+  }
+
+  &::after {
+    @apply hidden;
+  }
+
+  &:focus {
+    @include focus-base;
+  }
+
+  &.swiper-button-disabled {
+    @apply opacity-0 pointer-events-none;
+  }
+}
+
+:deep(.swiper-button-prev) {
+  @apply left-[20px];
+}
+
+:deep(.swiper-button-next) {
+  @apply right-[20px];
+  transform: rotate(180deg);
+  transform-origin: center;
 }
 </style>

@@ -128,51 +128,38 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .Carousel {
   @apply mt-100px relative overflow-hidden;
 
-    // position: relative;
-    // overflow: hidden;
-    // margin-top: 100px;
-    @include md(max) {
+    @screen lt-tb {
       @apply mt-60px;
-      // margin-top: 60px;
     }
   }
 
   .Carousel__inner {}
 
   .Carousel__contents {
-    // transition: transform 0.2s;
+    transition: transform 0.2s;
     @apply flex justify-center;
-    // display: flex;
-    // justify-content: center;
   }
 
   .Carousel__item {
     @apply list-none flex-shrink-0 my-0 mx-10px w-676px;
-    // list-style-type: none;
-    // flex-shrink: 0;
-    // margin: 0 10px;
     box-shadow: 3px 3px 6px rgba(#d9e6bd, 0.63);
 
-    // width: 676px;
-    @include md(max) {
+    @screen lt-tb {
       @apply w-310px;
-      // width: 310px;
     }
   }
 
   .Carousel__itemButton {
     @apply bg-transparent border-none cursor-pointer border-0 p-0 block;
-    // padding: 0;
-    // display: block;
-    // background-color: transparent;
-    // border: 0 none;
-    // cursor: pointer;
 
     &:focus {
-      outline: 5px solid $COLOR_MAIN;
+      outline: 5px solid var(--COLOR_MAIN);
       outline-offset: -5px;
     }
   }
@@ -181,22 +168,12 @@ export default defineComponent({
 
   .Carousel__controllerButton {
     @apply bg-transparent border-none cursor-pointer border-0 h-40px p-0 top-1/2 w-40px absolute;
-    // position: absolute;
-    // top: 50%;
-    // width: 40px;
-    // height: 40px;
-    // padding: 0;
-    // background-color: transparent;
-    // border: 0 none;
     background-image: url($PATH+"arrow-slide.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    // cursor: pointer;
-    @include md(max) {
+    @screen lt-tb {
       @apply h-20px w-20px;
-      // width: 20px;
-      // height: 20px;
     }
 
     &:focus {
@@ -205,14 +182,10 @@ export default defineComponent({
 
     &.-prev {
       @apply left-20px;
-      // left: 20px;
     }
 
     &.-next {
       @apply origin-center right-20px rotate-180;
-      // right: 20px;
-      // transform: rotate(180deg);
-      // transform-origin: center;
   }
 }
 </style>

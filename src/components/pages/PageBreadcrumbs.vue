@@ -63,55 +63,43 @@ if (routeData) {
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .PageBreadcrumbs {
   @apply mx-auto mt-50px mb-0 max-w-1000px;
 
-  // max-width: 1000px;
-  // margin: 50px auto 0;
   @include lg(max) {
     @apply py-0 px-20px;
-    // padding: 0 20px;
   }
 }
 
 .PageBreadcrumbs__list {
   @apply flex m-0 p-0;
-  // margin: 0;
-  // padding: 0;
-  // display: flex;
 }
 
 .PageBreadcrumbs__item {
   @apply list-none;
-  // list-style-type: none;
   font-size: em(13, 16);
 
   &:not(:first-child) {
     @apply pl-4 relative;
-    // position: relative;
     margin-left: em(6, 13);
-    // padding-left: 1em;
 
     &::before {
-      @apply top-0 left-0 text-hex-42b883 absolute;
+      @apply top-0 left-0 text-hex-42b883 absolute translate-y--50%;
       content: '>'
-      // position: absolute;
-      // top: 50%;
-      // left: 0;
-      // transform: translateY(-50%);
-      // color: $COLOR_MAIN;
+      color: var(--COLOR_MAIN);
     }
   }
 
   > a {
-    @apply text-hex-42b883 no-underline;
-    // color: $COLOR_MAIN;
-    // text-decoration: none;
+    @apply no-underline;
+    color: var(--COLOR_MAIN);
 
     &[href] {
       &:hover {
-        @apply hover: underline;
-        //   text-decoration: underline;
+        @apply hover:underline;
       }
     }
   }

@@ -81,15 +81,16 @@ export default {
 }
 </script>
 <style lang="scss">
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .font-awesome-size {
-  @apply text-3xl text-hex-696969;
-    // font-size: 30px;
-    // color: #696969;
+  @apply text-30px;
+    color: #696969;
 }
 
 .font-awesome-size-solid {
-  @apply text-3xl text-hex-f83979;
-  // font-size: 30px;
-  // color: #f83979;
+  @apply text-30px;
+  color: #f83979;
 }
 </style>

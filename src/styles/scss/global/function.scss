@@ -1,5 +1,9 @@
+@use "sass:math";
+@forward "variables";
+@use "variables" as *;
+
 // rem
-@function rem($value, $root: $BASE_FONT_SIZE) {
+@function rem($value, $root:var(--BASE_FONT_SIZE)) {
   @return math.div($value, $root)+ rem;
 }
 

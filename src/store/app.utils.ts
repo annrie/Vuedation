@@ -1,4 +1,4 @@
-import {NewsData, NewsCategory} from '@/store/app.config'
+import {NewsData, NewsCategory} from '~/store/app.config'
 import * as THREE from 'three'
 import {createNoise2D} from 'simplex-noise'
 // News

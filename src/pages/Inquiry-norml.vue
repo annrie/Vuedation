@@ -49,6 +49,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .about {
   display: flex;
   flex-direction: row;

@@ -50,74 +50,40 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .Modal {
-  @apply bg-white opacity-0 top-0 right-0 bottom-0 left-0 z-1000 fixed invisible;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
+  @apply opacity-0 top-0 right-0 bottom-0 left-0 z-1000 fixed invisible;
   transform: scale(0.94);
-  // z-index: 1000;
-  // background-color: rgba(#fff, 0.9);
-  // opacity: 0;
-  // visibility: hidden;
-  transition: visibility 0s linear $SEC, opacity $SEC ease, transform $SEC ease;
+  background-color: rgba(#fff, 0.9);
+  transition: visibility 0s linear 0.3s, opacity 0.3s ease, transform 0.3s ease;
 
   &.-show {
     @apply opacity-100 scale-100 visible;
-    // transform: scale(1);
-    // opacity: 1;
-    // visibility: visible;
-    transition: opacity $SEC ease, transform $SEC ease;
+    transition: opacity var(--SEC) ease, transform var(--SEC) ease;
   }
 }
 
 .Modal__image {
   @apply flex h-full w-full p-100px items-center justify-center box-border;
 
-  // width: 100%;
-  // height: 100%;
-  // padding: 100px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // box-sizing: border-box;
-  @include md(max) {
+  @screen lt-tb {
     @apply py-50px px-30px;
-    // padding: 50px 30px;
   }
 }
 
 .Modal__button {
   @apply bg-transparent border-none cursor-pointer border-0 h-30px top-60px right-60px w-30px absolute;
 
-  // position: absolute;
-  // top: 60px;
-  // right: 60px;
-  // width: 30px;
-  // height: 30px;
-  // padding: 0;
-  // background-color: transparent;
-  // border: 0 none;
-  // cursor: pointer;
-  @include md(max) {
+  @screen lt-tb {
     @apply top-30px right-20px;
-    // top: 30px;
-    // right: 20px;
   }
 }
 
 .Modal__buttonBar {
-  @apply bg-hex-42b883 rounded-2px h-40px origin-center top-1/2 left-1/2 w-4px absolute;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform-origin: center;
-  // width: 4px;
-  // height: 40px;
-  // background-color: $COLOR_MAIN;
-  // border-radius: 2px;
+  @apply rounded-2px h-40px origin-center top-1/2 left-1/2 w-4px absolute;
+  background-color: var(--COLOR_MAIN);
 
   &.-bar1 {
     transform: translate(-50%, -50%) rotate(45deg);

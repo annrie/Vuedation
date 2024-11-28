@@ -22,7 +22,7 @@
 
 .am-breadcrumbs {
   @apply mx-auto mt-50px mb-0 max-w-1000px;
-  @include lg(max) {
+  @screen lt-xl {
     @apply py-0 px-20px;
   }
 }

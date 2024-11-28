@@ -53,8 +53,11 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+@forward "@/styles/scss/global";
+@use "@/styles/scss/global" as *;
+
 .PageHero__wrap {
-  @apply top-0 right-0 bottom-0 left-0 z-2 absolute lg: pointer-events-none;
+  @apply top-0 right-0 bottom-0 left-0 z-2 absolute lg:pointer-events-none;
 
   @screen md {
     @apply py-0 px-20px;
@@ -72,68 +75,66 @@ export default defineComponent({
 // }
 .PageHero__inner {
   @apply h-full mx-auto my-0 max-w-1366px box-border;
-  @include md(min) {
+  @screen md {
     @apply flex items-center justify-center;
   }
 }
 
 .PageHero__content {
   @apply mx-auto my-0 w-full max-w-1150px z-0 relative box-border;
-   padding-right: percentage(calc(575 / 1326));
+   padding-right: math.percentage(math.div(575, 1326));
 
-  @include md(min) {
+  @screen md {
     @apply flex flex-col justify-center;
   }
 
-  @include md(max) {
+  @screen lt-tb {
     @apply h-full px-20px pt-130px pb-0;
   }
 }
 
 .PageHero__heading {
-  @apply text-hex-42b883;
   margin: 0 0 em(40, 110);
-  font-family: $FONT_EN;
+  font-family: var(--FONT_EN);
   font-size: em(110, 16);
   line-height: 0.8;
+  color: var(--COLOR_MAIN);
 
-  // color: $COLOR_MAIN;
-  @include md(max) {
+  @screen lt-tb {
     margin: 0 0 em(40, 65);
     font-size: em(65, 16);
   }
 
   .PageHero__wrap.-home & {
-    @apply text-hex-35495e;
     margin: 0 0 em(60, 36);
     font-size: em(36, 16);
     line-height: 1.15;
+    color: var(--COLOR_BASE);
 
-    // color: $COLOR_BASE;
-    @include lg(max) {
+    @screen lt-xl {
       font-size: em(26, 16);
     }
 
-    @include md(max) {
-      margin: 0 0 em(24, 20);
-      font-size: em(20, 16);
+    @screen lt-tb {
+     margin: 0 0 em(24, 20);
+     font-size: em(20, 16);
     }
 
     b {
       font-size: em(54, 36);
 
-      @include lg(max) {
+      @screen lt-xl {
         font-size: em(36, 26);
       }
 
-      @include md(max) {
+      @screen lt-tb {
         font-size: em(25, 20);
       }
     }
   }
 
   .PageHero__wrap.-about & {
-    @apply text-white;
+    @apply text-dark-600:60 dark:text-dark-400:60;
   }
 
   .PageHero__wrap.-author & {
@@ -141,17 +142,17 @@ export default defineComponent({
   }
 
   .PageHero__wrap.-qa & {
-    @apply dark: text-white;
+    @apply dark:text-dark-400:30;
   }
 
-  .PageHero__wrap.-inquiry & {
-    @apply text-white;
+  .PageHero__wrap.-form & {
+    @apply dark:text-dark-400:30;
   }
 
   .PageHero__wrap.-note & {
-    @apply text-bluegray dark: text-white;
+    @apply text-bluegray dark:text-white;
 
-    @include md(max) {
+    @screen lt-tb {
       text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
     }
   }
@@ -162,54 +163,69 @@ export default defineComponent({
 }
 
 .PageHero__headingEn {
-  @apply w-full text-hex-42b883;
+  @apply w-full;
   margin-bottom: em(24, 100);
   font-size: em(100, 36);
   line-height: 1.2;
+  color: var(--COLOR_MAIN);
   text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
 
-  @include lg(max) {
+  @screen lt-xl {
     font-size: em(80, 26);
   }
 
-  @include md(max) {
-    @apply text-5xl;
+  @screen lt-tb {
     margin-bottom: em(8, 60);
+    font-size: em(60, 20);
   }
 }
 
 .PageHero__description {
-  @apply m-0 text-xl;
+  @apply m-0;
+  font-size: em(20, 16);
   line-height: 2.3;
 
-  @include lg(max) {
+  @screen lt-xl {
     font-size: em(18, 16);
-  }
-
-  @include md(max) {
-    @apply text-lg;
     line-height: 1.5625;
   }
 
+  @screen lt-tb {
+    font-size: em(15, 16);
+    line-height: 1.5625;
+  }
+
+  .PageHero__wrap.-home & {
+    @apply text-dark-500;
+  }
+
   .PageHero__wrap.-about & {
-    @apply text-white;
+    @apply text-dark-600 dark:text-dark-400;
   }
 
   .PageHero__wrap.-author & {
     @apply text-white;
   }
 
+  .PageHero__wrap.-note & {
+    @apply text-dark-400;
+  }
+
+  .PageHero__wrap.-qa & {
+    @apply dark:text-dark-600:60;
+  }
+
   .PageHero__wrap.-form & {
-    @apply text-white;
+    @apply dark:text-dark-600:60;
   }
 }
 
 .PageHero__logo {
   @apply top-1/2 left-1/2 -z-1 absolute;
     transform: translate(-48px, -50%);
-    width: percentage(calc(649 / 1113));
+    width: math.percentage(math.div(649, 1113));
 
-  @include md(max) {
+  @screen lt-tb {
     @apply top-38px w-336px -translate-x-86px;
   }
 
@@ -218,8 +234,7 @@ export default defineComponent({
   }
 
   &::after {
-    @apply bg-no-repeat -z-1 absolute;
-    content: "";
+    @apply bg-no-repeat -z-1 absolute content-empty;
     background-size: 100%;
   }
 
@@ -228,7 +243,7 @@ export default defineComponent({
       @apply h-269px -right-20px bottom-45px w-784px;
       background-image: url($PATH + "hero-bg-home.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply right-auto h-110px -bottom-16px -left-36px w-321px;
       }
     }
@@ -239,7 +254,7 @@ export default defineComponent({
       @apply h-208px right-8px bottom-99px w-779px;
       background-image: url($PATH + "hero-bg-about.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply right-auto h-85px bottom-14px -left-320px w-319px;
       }
     }
@@ -250,7 +265,7 @@ export default defineComponent({
       @apply h-208px right-27px bottom-99px w-902px;
        background-image: url($PATH + "hero-bg-author.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply right-auto h-85px bottom-10px -left-65px w-369px;
        }
     }
@@ -261,7 +276,7 @@ export default defineComponent({
       @apply h-228px -right-16px bottom-63px w-709px;
       background-image: url($PATH + "hero-bg-note.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply h-163px -right-7px -bottom-72px w-484px;
       }
     }
@@ -272,7 +287,7 @@ export default defineComponent({
       @apply h-248px -right-20px bottom-48px w-674px;
       background-image: url($PATH + "hero-bg-qa.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply h-102px right-55px -bottom-6px w-276px;
       }
     }
@@ -283,7 +298,7 @@ export default defineComponent({
       @apply h-248px -right-20px bottom-48px w-674px;
        background-image: url($PATH + "hero-bg-form.svg");
 
-      @include md(max) {
+      @screen lt-tb {
         @apply h-102px right-55px -bottom-6px w-276px;
       }
     }
@@ -292,13 +307,15 @@ export default defineComponent({
 
 .PageHero__scroll {
   @apply h-[60px] bottom-[1%] left-1/2 w-[2px] z-4 -translate-x-[50%] absolute;
+  //background-color: var(--COLOR_MAIN);
   animation: arrowMove 1s ease-in-out infinite;
-  @include md(max) {
-    @apply bottom-[10px];
+
+  @screen lt-tb {
+    @apply h-40px bottom-[10px];
    }
 
   .PageHero__wrap.-home & {
-    @apply bg-gray-500 dark: bg-white;
+    @apply bg-gray-500 dark:bg-dark-500;
   }
 
   .PageHero__wrap.-about & {
@@ -309,16 +326,16 @@ export default defineComponent({
     @apply bg-white;
   }
 
-  // .PageHero__wrap.-note & {
-  //   @apply bg-gray-500 dark: bg-white;
-  // }
+   .PageHero__wrap.-note & {
+     @apply bg-gray-500 dark:bg-white;
+   }
 
   .PageHero__wrap.-qa & {
-    @apply bg-gray-500 dark: bg-white;
+    @apply bg-gray-500 dark:bg-white;
   }
 
   .PageHero__wrap.-form & {
-    @apply bg-white;
+    @apply  bg-dark-100 dark:bg-light-300;
   }
 }
 
@@ -340,16 +357,12 @@ export default defineComponent({
 
 /*Scrollテキストの描写*/
 .PageHero__scroll span {
-  @apply text-xs bottom-[10px] -left-[20px] text-gray-500 tracking-[0.05em] absolute dark: text-light-500;
+  @apply text-xs bottom-[10px] -left-[20px] text-gray-500 tracking-[0.05em] absolute dark:text-light-500;
   /*描画位置*/
-  //position: absolute;
-  //left: -20px;
-  //bottom: 10px;
 
   /*テキストの形状*/
-  //color: #6b7280;
-  //font-size: 0.7rem;
-  //letter-spacing: 0.05em;
+  color: #6b7280;
+  letter-spacing: 0.05em;
 
   /*縦書き設定*/
   -ms-writing-mode: tb-rl;
@@ -365,19 +378,15 @@ export default defineComponent({
   }
 
   .PageHero__wrap.-form & {
-    @apply text-light-500;
+    @apply  dark-100 dark:light-300;
   }
 }
 
 /* 矢印の描写 */
 .PageHero__scroll::before {
-  @apply h-[20px] -right-[6px] bottom-0 w-[2px] absolute dark: bg-light-500;
-  content: "";
+  @apply h-[20px] -right-[6px] bottom-0 w-[2px] absolute dark:bg-light-500 content-empty;
 
   /*描画位置*/
-  //position: absolute;
-  //bottom: 0;
-  //right: -6px;
 
   /*矢印の形状*/
   //width: 1px;
@@ -386,7 +395,7 @@ export default defineComponent({
   transform: skewX(-31deg);
 
   .PageHero__wrap.-home & {
-    @apply bg-gray-500 dark: bg-white;
+    @apply bg-gray-500 dark:bg-light-500;
   }
 
   .PageHero__wrap.-about & {
@@ -397,30 +406,26 @@ export default defineComponent({
     @apply bg-light-500;
   }
 
-  // .PageHero__wrap.-note & {
-  //   @apply bg-gray-500 dark: bg-white;
-  // }
+   .PageHero__wrap.-note & {
+     @apply bg-gray-500 dark:bg-white;
+   }
 
   .PageHero__wrap.-qa & {
-    @apply bg-gray-500 dark: bg-white;
+    @apply bg-gray-500 dark:bg-white;
   }
 
   .PageHero__wrap.-form & {
-    @apply bg-light-500;
+    @apply bg-dark-100 dark:bg-light-300;
   }
 }
 
 .PageHero__scroll::after {
-  @apply h-[60px] right-0 bottom-0 w-[1px] absolute dark: bg-light-500;
-  content: "";
+  @apply h-[60px] right-0 bottom-0 w-[2px] absolute dark:bg-light-500 content-empty;
 
   /*描画位置*/
-  //position: absolute;
-  //bottom: 0;
-  //right: 0;
 
   /*矢印の形状*/
-  //width: 1px   ;
+  //width: 1px;
   //height: 60px;
   //background: #eee;
 

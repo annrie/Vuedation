@@ -1,0 +1,65 @@
+@use "variables" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--FONT_FAMILY_BASE);
+  color: var(--COLOR_BASE);
+}
+
+html.dark .App{
+  @apply bg-dark-50 text-light-50;
+  // background: #121212;
+  color-scheme: dark;
+}
+
+[class*="before:"]::before {
+  content: "";
+}
+
+[class*="after:"]::after {
+  content: "";
+}
+
+img {
+  max-width: 100%;
+  margin: 0;
+  display: block;
+}
+
+[class*="before:"]::before {
+  content: "";
+}
+
+[class*="after:"]::after {
+  content: "";
+}
+.show-for-sr,
+.show-on-focus {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.show-on-focus:active, .show-on-focus:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
