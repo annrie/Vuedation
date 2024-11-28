@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/annrie/Vuedation/compare/v1.5.3...v1.5.4) (2024-11-28)
+
+
+### ビルドプロセスまたは補助ツールの変更
+
+* 🤖 依存関係(package.json): 開発依存パッケージのバージョンを更新 ([ce7f713](https://github.com/annrie/Vuedation/commit/ce7f713b673cc8027904df6223bf7804dccaa4a0))
+
 ### 1.5.3 (2024-11-08)
 
 
