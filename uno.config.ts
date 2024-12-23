@@ -1,4 +1,7 @@
 import {
+  createLocalFontProcessor,
+} from '@unocss/preset-web-fonts/local'
+import {
   defineConfig,
   presetAttributify,
   presetTypography,
@@ -89,6 +92,7 @@ export default defineConfig({
         serif: 'DM Serif Display',
         mono: 'DM Mono',
       },
+      processors: createLocalFontProcessor(),
     }),
   ],
   variants: [
